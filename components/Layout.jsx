@@ -28,7 +28,7 @@ function Layout({ title, children }) {
             </div>
           </nav>
         </header>
-        <main className="container m-auto mt-4 px-4">{children}</main>
+        <main className="  mt-0">{children}</main>
         <footer className="flex justify-center items-center bg-green-400">
           footer
         </footer>
