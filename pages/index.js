@@ -1,7 +1,11 @@
-import React from 'react';
+import Layout from '@/components/Layout';
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <Layout title="Home">
+      <div className="text-red-500">Home</div>
+    </Layout>
+  );
 }
 
 export default Home;
