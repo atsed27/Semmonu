@@ -1,7 +1,7 @@
 const data = {
   events: [
     {
-      _id: 1,
+      _id: '1',
       name: 'concert',
       category: 'Music',
       image: '/Image/semi.png',
@@ -14,7 +14,7 @@ const data = {
       banner: '/images/banner1.jpg',
     },
     {
-      _id: 2,
+      _id: '2',
       name: 'Fit Shirt',
       slug: 'fit-shirt',
       category: 'Shirts',
@@ -28,7 +28,7 @@ const data = {
       banner: '/images/banner2.jpg',
     },
     {
-      _id: 3,
+      _id: '3',
       name: 'Slim Shirt',
       slug: 'slim-shirt',
       category: 'Shirts',
@@ -41,7 +41,7 @@ const data = {
       description: 'A popular shirt',
     },
     {
-      _id: 4,
+      _id: '4',
       name: 'Golf Pants',
       slug: 'golf-pants',
       category: 'Pants',
@@ -54,7 +54,7 @@ const data = {
       description: 'Smart looking pants',
     },
     {
-      _id: 5,
+      _id: '5',
       name: 'Fit Pants',
       slug: 'fit-pants',
       category: 'Pants',
@@ -67,7 +67,7 @@ const data = {
       description: 'A popular pants',
     },
     {
-      _id: 6,
+      _id: '6',
       name: 'Classic Pants',
       slug: 'classic-pants',
       category: 'Pants',
@@ -80,7 +80,7 @@ const data = {
       description: 'A popular pants',
     },
     {
-      _id: 8,
+      _id: '8',
       name: 'Fit Shirt',
       slug: 'fit-shirt',
       category: 'Shirts',
