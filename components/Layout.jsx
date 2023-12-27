@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { Store } from '@/utils/store';
 
 function Layout({ children, title }) {
+  const { state } = useContext(Store);
+  const { ticket } = state;
   return (
     <>
       <Head>
@@ -16,9 +19,14 @@ function Layout({ children, title }) {
               Semo<span className="text-white ">nun</span>
             </Link>
             <div>
-              <Link href={'/eventScreen'} className="p-2 ">
-                Events
+              <Link href={'/ticket'} className=" ">
+                Ticket
               </Link>
+              {ticket.ticketItems.length > 0 && (
+                <span className="px-2 py-1 ml-1 text-sm font-bold text-white bg-red-700 rounded-full">
+                  {ticket.ticketItems.reduce((a, c) => a + c.quantity, 0)}
+                </span>
+              )}
               <Link
                 href={'/login'}
                 className="px-2 py-1 bg-gray-100 border rounded-full"

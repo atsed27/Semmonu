@@ -3,15 +3,34 @@ import data from '@/utils/data';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { Store } from '@/utils/store';
 
 function Events() {
+  const { state, dispatch } = useContext(Store);
+
   const { query } = useRouter();
   const { id } = query;
   const event = data.events.find((x) => x._id === id);
-  console.log(event);
+  console.log(state);
   if (!event) {
     return <div>Event is not found</div>;
   }
+  const addTicket = () => {
+    const existItem = state.ticket.ticketItems.find(
+      (item) => item._id === event._id
+    );
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    if (event.countInStock < quantity) {
+      alert('sorry,ticket is out of stack');
+      return;
+    }
+
+    dispatch({
+      type: 'Ticket_ADD_ITEM',
+      payload: { ...event, quantity: quantity },
+    });
+  };
   return (
     <Layout>
       <div className=" container   m-auto mt-4">
@@ -52,7 +71,9 @@ function Events() {
               <div>status</div>
               <div>{event.countInStock > 0 ? 'InStack' : 'Unavailable'}</div>
             </div>
-            <button className="w-full primary-button">Add ticket</button>
+            <button onClick={addTicket} className="w-full primary-button">
+              Add ticket
+            </button>
           </div>
         </div>
       </div>
