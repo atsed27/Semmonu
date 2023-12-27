@@ -11,10 +11,10 @@ function Home() {
       <div>
         <div className="flex flex-col-reverse items-center justify-end h-screen sm:justify-center jio bg-primary sm:flex-row">
           <div className="px-2 sm:px-5">
-            <h1 className="text-3xl font-bold sm:text-5xl lg:text-7xl">
+            <h1 className="text-4xl font-bold jioT sm:text-5xl lg:text-7xl">
               Discover Events
             </h1>
-            <h2 className="text-4xl font-bold sm:text-5xl lg:text-7xl text-secondary">
+            <h2 className="text-3xl font-bold sm:text-5xl lg:text-7xl text-secondary">
               around You !
             </h2>
             <p className="py-4 text-white sm:py-8 sm:w-96">
