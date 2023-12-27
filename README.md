@@ -1,1 +1,1 @@
-# Next js e-commerce web application -> Kdame gbiya
+# Next js event discover web application -> Kdame
