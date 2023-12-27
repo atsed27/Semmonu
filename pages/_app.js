@@ -1,17 +1,10 @@
 import '@/styles/globals.css';
 import '@/styles/HomeS.css';
-import { SessionProvider } from 'next-auth/react';
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}) {
+import { StoreProvider } from '@/utils/store';
+export default function App({ Component, pageProps }) {
   return (
-    <SessionProvider session={session}>
-      {Component.auth ? (
-        <Component {...pageProps} />
-      ) : (
-        <Component {...pageProps} />
-      )}
-    </SessionProvider>
+    <StoreProvider>
+      <Component {...pageProps} />
+    </StoreProvider>
   );
 }
