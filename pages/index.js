@@ -2,6 +2,7 @@ import Layout from '@/components/Layout';
 import event from '../public/Image/event.png';
 import Image from 'next/image';
 import sell from '../public/Image/sell.png';
+import pay from '../public/Image/Pay/Pay_W.png';
 import Link from 'next/link';
 
 function Home() {
@@ -43,9 +44,9 @@ function Home() {
           <h1 className="text-xl ">Fast online payment</h1>
           <div>Imag</div>
         </div>
-        <div className="flex items-center justify-center bg-primary">
+        <div className="flex items-center justify-center h-96 bg-primary">
           <div className="mb-5">
-            <h1 className="text-3xl font-bold text-center md:text-5xl">
+            <h1 className="text-4xl font-bold text-center sm:text-left sm:text-5xl lg:text-7xl text-textPrimary">
               Sell ticket online
             </h1>
             <p className="px-3 py-5 text-white sm:w-96">
@@ -53,7 +54,7 @@ function Home() {
               vulputate libero et velit interdum, ac aliquet odio mattis
             </p>
             <Link
-              className="px-3 py-3 text-xl border rounded-full bg-orange"
+              className="px-3 py-3 ml-5 text-xl border rounded-full bg-orange"
               href="/"
             >
               Create Event now!
@@ -61,6 +62,20 @@ function Home() {
           </div>
           <div className="hidden mb-5 sm:flex">
             <Image src={sell} alt="sell" />
+          </div>
+        </div>
+        <div className="flex flex-col items-center justify-start sm:justify-center sm:flex-row">
+          <div>
+            <Image src={pay} alt="pay" />
+          </div>
+          <div className="px-3 mb-5">
+            <h1 className="text-4xl font-bold sm:text-5xl lg:text-7xl text-textPrimary ">
+              Get paid instantly
+            </h1>
+            <p className="sm:w-[30rem] text-black pt-10">
+              Lorem ipsum dolor sit amet,consectetur adipiscing elit.
+              Nuncvulputate libero et velit interdum, acaliquet odio mattis.
+            </p>
           </div>
         </div>
       </div>
