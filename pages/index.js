@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 function Home() {
   return (
-    <Layout>
-      <div>
+    <Layout title="Home">
+      <div className="m-auto mx-0 mt-0">
         <div className="flex flex-col-reverse items-center justify-end h-screen sm:justify-center jio bg-primary sm:flex-row">
           <div className="px-2 sm:px-5">
             <h1 className="text-4xl font-bold jioT sm:text-5xl lg:text-7xl">
