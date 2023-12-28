@@ -1,16 +1,16 @@
 .jio {
-  @media only screen and (max-width: 330px) {
+  @media only screen and (max-width: 300px) {
     height: auto;
   }
 }
 .jioC {
-  @media only screen and (max-width: 330px) {
+  @media only screen and (max-width: 300px) {
     display: flex;
     align-items: center;
   }
 }
 .jioT {
-  @media only screen and (max-width: 330px) {
+  @media only screen and (max-width: 300px) {
     font-size: 28px;
     line-height: 30px;
   }

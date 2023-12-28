@@ -4,13 +4,25 @@ import React from 'react';
 import Google from '../public/Image/google.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 
 function Login() {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm();
+  const submitHandler = ({ email, password }) => {
+    console.log(email, password);
+  };
   return (
     <Layout title={'login'}>
       <div className="container m-auto mt-4 px-4">
         <div className="flex items-center justify-center">
-          <div className=" mx-2 mt-16 mb-5 sm:mt-24 lg:mt-36 px-5 py-5  shadow-xl shadow-gray-200 rounded-lg">
+          <form
+            onSubmit={handleSubmit(submitHandler)}
+            className=" mx-2 mt-16 mb-5 sm:mt-24 lg:mt-36 px-5 py-5  shadow-xl shadow-gray-200 rounded-lg"
+          >
             <h1 className="text-2xl py-3 text-center font-bold">
               welcome back
             </h1>
@@ -18,14 +30,38 @@ function Login() {
               <label htmlFor="email">Email</label>
               <input
                 type="email"
+                {...register('email', {
+                  required: 'Please enter your email',
+                  pattern: {
+                    value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                    message: 'Please enter valid email address',
+                  },
+                })}
                 className="w-full rounded"
                 id="email"
                 autoFocus
               />
+              {errors.email && (
+                <div className="text-red-600"> {errors.email.message} </div>
+              )}
             </div>
             <div className="mb-4">
               <label htmlFor="password">Password</label>
-              <input type="password" className="w-full rounded" id="password" />
+              <input
+                type="password"
+                {...register('password', {
+                  required: 'Please enter your password',
+                  minLength: {
+                    value: 6,
+                    message: 'password more than 5 chars',
+                  },
+                })}
+                className="w-full rounded"
+                id="password"
+              />
+              {errors.password && (
+                <div className="text-red-600">{errors.password.message}</div>
+              )}
             </div>
             <div className="mb-4">
               <h3 className="text-right">
@@ -72,13 +108,13 @@ function Login() {
                 />
               </button>
             </div>
-            <div className="mb-4 text-xl flex items-center justify-center">
-              dont an account ? {'  '}
+            <div className="mb-4 text-lg sm:text-xl flex items-center justify-center">
+              don&apos;t an account?&nbsp;
               <Link href="/register" className="text-green-500">
                 sign Up
               </Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </Layout>

@@ -4,11 +4,12 @@ import { Store } from '@/utils/store';
 import React, { useContext } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
 
 function Ticket() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
-
+  const router = useRouter();
   return (
     <Layout>
       <div className="container m-auto mt-4 px-4">
@@ -138,7 +139,10 @@ function Ticket() {
                     <h1>$90</h1>
                   </div>
                   <div className="flex py-10 items-start justify-center">
-                    <button className=" px-10 py-2 text-white font-semibold bg-black ">
+                    <button
+                      onClick={() => router.push('login?redirect=/pay')}
+                      className=" px-10 py-2 text-white font-semibold bg-black "
+                    >
                       Buy Now
                     </button>
                   </div>
