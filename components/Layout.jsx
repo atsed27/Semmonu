@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Store } from '@/utils/store';
@@ -6,6 +6,10 @@ import { Store } from '@/utils/store';
 function Layout({ children, title }) {
   const { state } = useContext(Store);
   const { ticket } = state;
+  const [ticketCount, setTicketCount] = useState(0);
+  useEffect(() => {
+    setTicketCount(ticket.ticketItems.reduce((a, c) => a + c.quantity, 0));
+  }, [ticket.ticketItems]);
   return (
     <>
       <Head>
@@ -22,9 +26,9 @@ function Layout({ children, title }) {
               <Link href={'/ticket'} className=" ">
                 Ticket
               </Link>
-              {ticket.ticketItems.length > 0 && (
+              {ticketCount > 0 && (
                 <span className="px-2 py-1 ml-1 text-sm font-bold text-white bg-red-700 rounded-full">
-                  {ticket.ticketItems.reduce((a, c) => a + c.quantity, 0)}
+                  {ticketCount}
                 </span>
               )}
               <Link

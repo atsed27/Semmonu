@@ -1,11 +1,14 @@
 import { createContext, useReducer } from 'react';
+import Cookies from 'js-cookie';
 
 export const Store = createContext();
 
 const initialState = {
-  ticket: {
-    ticketItems: [],
-  },
+  ticket: Cookies.get('ticket')
+    ? JSON.parse(Cookies.get('ticket'))
+    : {
+        ticketItems: [],
+      },
 };
 function reducer(state, action) {
   switch (action.type) {
@@ -19,29 +22,23 @@ function reducer(state, action) {
             item.name === existItem.name ? newItem : item
           )
         : [...state.ticket.ticketItems, newItem];
+      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
       return { ...state, ticket: { ...state.cart, ticketItems } };
     }
     case 'Ticket_Diff_Item': {
       const Item = action.payload;
       const privItem = state.ticket.ticketItems;
-      console.log(privItem);
-
-      if (privItem.length === 0) {
-        const ticketItems = state.ticket.ticketItems.filter(
-          (item) => item._id !== action.payload._id
-        );
-        return { ...state, ticket: { ...state.ticket, ticketItems } };
-      }
-      console.log(Item.quantity);
       const ticketItems = privItem.map((item) =>
         item._id === Item._id ? Item : item
       );
+      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
     case 'Ticket_Remove_ITEM': {
       const ticketItems = state.ticket.ticketItems.filter(
         (item) => item._id !== action.payload._id
       );
+      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
     default: {

@@ -3,6 +3,8 @@ import Layout from '@/components/Layout';
 import { Store } from '@/utils/store';
 import React, { useContext } from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
+
 function Ticket() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
@@ -15,7 +17,7 @@ function Ticket() {
         </h2>
         {ticket.ticketItems.length === 0 ? (
           <div>
-            Ticket bag is empty.<Link href="/">Go to Events</Link>
+            Ticket bag is empty.<Link href="/event">Go to Events</Link>
           </div>
         ) : (
           <div>
@@ -30,12 +32,14 @@ function Ticket() {
                 {ticket.ticketItems.map((item) => (
                   <div className="my-3" key={item._id}>
                     <div className="flex my-10 md:my-0 flex-col md:flex-row items-center justify-between">
-                      <div className="flex items-center md:items-start jioC ">
-                        <img
-                          className="h-1/2 w-1/2 lg:w-1/3 lg:h-1/4"
-                          src={item.image}
-                          alt="event"
-                        />
+                      <div className="flex items-center justify-start md:items-start jioC ">
+                        <a
+                          href={`/event/${item._id}`}
+                          className='className="h-1/2 w-1/2 lg:w-1/3 lg:h-1/4"'
+                        >
+                          <img className="" src={item.image} alt="event" />
+                        </a>
+
                         <div className="ml-5">
                           <h2 className="text-lg font-semibold ">
                             {item.name} Event{' '}
@@ -69,6 +73,10 @@ function Ticket() {
                           <button
                             onClick={() => {
                               const quantity = item.quantity + 1;
+                              if (item.countInStock < quantity) {
+                                alert('sorry,ticket is out of stack');
+                                return;
+                              }
                               dispatch({
                                 type: 'Ticket_ADD_ITEM',
                                 payload: { ...item, quantity: quantity },
@@ -82,9 +90,7 @@ function Ticket() {
                           <button
                             className="text-4xl"
                             onClick={() => {
-                              console.log(item.quantity);
                               const quantity = item.quantity - 1;
-
                               if (quantity === 0) {
                                 dispatch({
                                   type: 'Ticket_Remove_ITEM',
@@ -101,7 +107,7 @@ function Ticket() {
                             -
                           </button>
                         </div>
-                        <p> ${item.price} </p>
+                        <p> ${item.price * item.quantity} </p>
                       </div>
                     </div>
                     <hr className="my-5" />
@@ -115,14 +121,20 @@ function Ticket() {
                   </h1>
                   <div className="flex  items-center justify-between">
                     <h2>Subtotal</h2>
-                    <h2>$100</h2>
+                    <h2>
+                      ${' '}
+                      {ticket.ticketItems.reduce(
+                        (a, c) => a + c.quantity * c.price,
+                        0
+                      )}{' '}
+                    </h2>
                   </div>
                   <div className="flex py-3 items-center justify-between">
                     <h2>bonus</h2>
                     <h2>$10</h2>
                   </div>
                   <div className="flex items-center justify-between">
-                    <h1>Total </h1>
+                    <h1 className="text-xl font-semibold">Total </h1>
                     <h1>$90</h1>
                   </div>
                   <div className="flex py-10 items-start justify-center">
@@ -140,4 +152,4 @@ function Ticket() {
   );
 }
 
-export default Ticket;
+export default dynamic(() => Promise.resolve(Ticket), { ssr: false });

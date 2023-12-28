@@ -10,6 +10,7 @@ function Events() {
   const { state, dispatch } = useContext(Store);
 
   const { query } = useRouter();
+  const router = useRouter();
   const { id } = query;
   const event = data.events.find((x) => x._id === id);
   console.log(state);
@@ -30,6 +31,7 @@ function Events() {
       type: 'Ticket_ADD_ITEM',
       payload: { ...event, quantity: quantity },
     });
+    router.push('/ticket');
   };
   return (
     <Layout>
