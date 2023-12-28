@@ -4,9 +4,9 @@ import { Store } from '@/utils/store';
 import React, { useContext } from 'react';
 import Link from 'next/link';
 function Ticket() {
-  const { state } = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { ticket } = state;
-  console.log(ticket);
+
   return (
     <Layout>
       <div className="container m-auto mt-4 px-4">
@@ -51,11 +51,55 @@ function Ticket() {
                           </h2>
                         </div>
                       </div>
-                      <div className="my-5 text-xl ">
+                      <div className="my-5 text-xl flex flex-col items-center ">
+                        <div>
+                          <button
+                            onClick={() => {
+                              dispatch({
+                                type: 'Ticket_Remove_ITEM',
+                                payload: item,
+                              });
+                            }}
+                            className="bg-red-500 rounded-full px-2"
+                          >
+                            X
+                          </button>
+                        </div>
                         <div className="flex items-center">
-                          <button className="text-3xl">+</button>
+                          <button
+                            onClick={() => {
+                              const quantity = item.quantity + 1;
+                              dispatch({
+                                type: 'Ticket_ADD_ITEM',
+                                payload: { ...item, quantity: quantity },
+                              });
+                            }}
+                            className="text-3xl"
+                          >
+                            +
+                          </button>
                           <h2 className="text-2xl px-2"> {item.quantity} </h2>
-                          <button className="text-4xl">-</button>
+                          <button
+                            className="text-4xl"
+                            onClick={() => {
+                              console.log(item.quantity);
+                              const quantity = item.quantity - 1;
+
+                              if (quantity === 0) {
+                                dispatch({
+                                  type: 'Ticket_Remove_ITEM',
+                                  payload: { item },
+                                });
+                                return;
+                              }
+                              dispatch({
+                                type: 'Ticket_Diff_Item',
+                                payload: { ...item, quantity: quantity },
+                              });
+                            }}
+                          >
+                            -
+                          </button>
                         </div>
                         <p> ${item.price} </p>
                       </div>

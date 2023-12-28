@@ -21,6 +21,29 @@ function reducer(state, action) {
         : [...state.ticket.ticketItems, newItem];
       return { ...state, ticket: { ...state.cart, ticketItems } };
     }
+    case 'Ticket_Diff_Item': {
+      const Item = action.payload;
+      const privItem = state.ticket.ticketItems;
+      console.log(privItem);
+
+      if (privItem.length === 0) {
+        const ticketItems = state.ticket.ticketItems.filter(
+          (item) => item._id !== action.payload._id
+        );
+        return { ...state, ticket: { ...state.ticket, ticketItems } };
+      }
+      console.log(Item.quantity);
+      const ticketItems = privItem.map((item) =>
+        item._id === Item._id ? Item : item
+      );
+      return { ...state, ticket: { ...state.ticket, ticketItems } };
+    }
+    case 'Ticket_Remove_ITEM': {
+      const ticketItems = state.ticket.ticketItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+      return { ...state, ticket: { ...state.ticket, ticketItems } };
+    }
     default: {
       return state;
     }
