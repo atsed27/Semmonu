@@ -1,19 +1,18 @@
 import Layout from '@/components/Layout';
-import data from '@/utils/data';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
 import { Store } from '@/utils/store';
+import db from '@/utils/db';
+import Events from '@/model/Events';
 
-function Events() {
+function EventScreen(props) {
   const { state, dispatch } = useContext(Store);
-
-  const { query } = useRouter();
+  const { event } = props;
   const router = useRouter();
-  const { id } = query;
-  const event = data.events.find((x) => x._id === id);
-  console.log(state);
+
+  console.log(event);
   if (!event) {
     return <div>Event is not found</div>;
   }
@@ -83,4 +82,19 @@ function Events() {
   );
 }
 
-export default Events;
+export default EventScreen;
+
+export async function getServerSideProps(context) {
+  const { params } = context;
+  const { id } = params;
+
+  await db.connect();
+  const event = await Events.findOne({ _id: id }).lean();
+
+  await db.disconnect();
+  return {
+    props: {
+      event: event ? db.convertDocToObj(event) : null,
+    },
+  };
+}

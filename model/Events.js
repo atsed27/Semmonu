@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const ProductSchema = new mongoose.Schema(
+const EventSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -48,6 +48,5 @@ const ProductSchema = new mongoose.Schema(
   }
 );
 
-const Products =
-  mongoose.models.Product || mongoose.model('Product', ProductSchema);
-export default Products;
+const Events = mongoose.models.Event || mongoose.model('Event', EventSchema);
+export default Events;
