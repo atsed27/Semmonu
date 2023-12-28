@@ -1,19 +1,44 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '@/components/Layout';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Google from '../public/Image/google.png';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
+import { signIn, useSession } from 'next-auth/react';
+import { getError } from '@/utils/error';
+import { useRouter } from 'next/router';
 
 function Login() {
+  const { data: session } = useSession();
+  const router = useRouter();
+  const { redirect } = router.query;
+  useEffect(() => {
+    if (session?.user) {
+      router.push(redirect || '/');
+    }
+  }, [redirect, router, session?.user]);
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
-  const submitHandler = ({ email, password }) => {
-    console.log(email, password);
+  const submitHandler = async ({ email, password }) => {
+    try {
+      const res = await signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+      });
+      if (res.error) {
+        toast.error(res.error);
+      }
+      console.log(res);
+    } catch (error) {
+      toast.error(getError(error));
+      console.log(error);
+    }
   };
   return (
     <Layout title={'login'}>

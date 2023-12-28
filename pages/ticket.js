@@ -24,8 +24,8 @@ function Ticket() {
           <div>
             <div className=" mx-5 my-5 hidden sm:flex items-center justify-between">
               <h1 className="border-2 p-2 rounded-md">continue Events</h1>
-              <h1 className="text-xl text-white bg-black p-2 rounded-md">
-                checkout Now
+              <h1 className="text-xl text-white bg-primary p-2 rounded-md">
+                Buy Now
               </h1>
             </div>
             <div className="grid md:grid-cols-4 gap-5">
@@ -141,7 +141,7 @@ function Ticket() {
                   <div className="flex py-10 items-start justify-center">
                     <button
                       onClick={() => router.push('login?redirect=/pay')}
-                      className=" px-10 py-2 text-white font-semibold bg-black "
+                      className=" px-10 py-2 text-white font-semibold bg-primary "
                     >
                       Buy Now
                     </button>
