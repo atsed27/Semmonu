@@ -8,6 +8,7 @@ const initialState = {
     ? JSON.parse(Cookies.get('ticket'))
     : {
         ticketItems: [],
+        createEvent: {},
       },
 };
 function reducer(state, action) {
@@ -40,6 +41,18 @@ function reducer(state, action) {
       );
       Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
+    }
+    case 'Save_Create_Event': {
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          createEvent: {
+            ...state.ticket.createEvent,
+            ...action.payload,
+          },
+        },
+      };
     }
     default: {
       return state;
