@@ -78,7 +78,6 @@ function EventScreen(props) {
           </div>
         </div>
         <div className="py-2 md:py-4 lg:py-6">
-          <hr className="text-green-300" color="green" />
           <Recommend events={events} />
         </div>
       </div>

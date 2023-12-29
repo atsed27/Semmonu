@@ -90,7 +90,7 @@ function Layout({ children, title }) {
             </div>
           </nav>
         </header>
-        <main className="m-auto bg-primary mx-0 mt-0">{children}</main>
+        <main className="m-auto  mx-0 mt-0">{children}</main>
         <footer className="flex items-center justify-center bg-primary">
           footer
         </footer>

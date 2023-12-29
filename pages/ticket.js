@@ -140,7 +140,7 @@ function Ticket() {
                   </div>
                   <div className="flex py-10 items-start justify-center">
                     <button
-                      onClick={() => router.push('login?redirect=/pay')}
+                      onClick={() => router.push('login?redirect=/paySelect')}
                       className=" px-10 py-2 text-white font-semibold bg-primary "
                     >
                       Buy Now
