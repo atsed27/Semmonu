@@ -2,14 +2,13 @@ import Layout from '@/components/Layout';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import EventWizard from '@/components/EventWizard';
-import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Store } from '@/utils/store';
 function CreateEvent() {
   const { data: session } = useSession();
-  console.log(session?.user.isAdmin);
+  const router = useRouter();
   const {
     handleSubmit,
     register,
@@ -32,19 +31,8 @@ function CreateEvent() {
       type: 'Save_Create_Event',
       payload: { title, address, description, price, total },
     });
-    Cookies.set(
-      'ticket',
-      JSON.stringify({
-        ...ticket,
-        createEvent: {
-          title,
-          address,
-          description,
-          price,
-          total,
-        },
-      })
-    );
+
+    router.push('/eventCategory');
   };
   if (!session?.user.isAdmin) {
     return (
@@ -157,3 +145,5 @@ function CreateEvent() {
 }
 
 export default CreateEvent;
+
+CreateEvent.auth = true;

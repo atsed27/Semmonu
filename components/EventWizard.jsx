@@ -3,7 +3,7 @@ import React from 'react';
 function EventWizard({ activeStep }) {
   return (
     <div className="flex flex-wrap mb-5">
-      {['Login ', 'Event Basic ', 'Event Category ', 'upload'].map(
+      {['Login ', 'Event Basics ', 'Event Category ', 'Event upload'].map(
         (step, index) => (
           <div
             key={step}

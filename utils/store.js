@@ -23,7 +23,7 @@ function reducer(state, action) {
             item.name === existItem.name ? newItem : item
           )
         : [...state.ticket.ticketItems, newItem];
-      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
+      Cookies.set('ticket', JSON.stringify({ ...state.ticket, ticketItems }));
       return { ...state, ticket: { ...state.cart, ticketItems } };
     }
     case 'Ticket_Diff_Item': {
@@ -32,25 +32,24 @@ function reducer(state, action) {
       const ticketItems = privItem.map((item) =>
         item._id === Item._id ? Item : item
       );
-      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
+      Cookies.set('ticket', JSON.stringify({ ...state.ticket, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
     case 'Ticket_Remove_ITEM': {
       const ticketItems = state.ticket.ticketItems.filter(
         (item) => item._id !== action.payload._id
       );
-      Cookies.set('ticket', JSON.stringify({ ...state.cart, ticketItems }));
+      Cookies.set('ticket', JSON.stringify({ ...state.ticket, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
     case 'Save_Create_Event': {
+      const createEvent = { ...state.ticket.createEvent, ...action.payload };
+      Cookies.set('ticket', JSON.stringify({ ...state.ticket, createEvent }));
       return {
         ...state,
         ticket: {
           ...state.ticket,
-          createEvent: {
-            ...state.ticket.createEvent,
-            ...action.payload,
-          },
+          createEvent: createEvent,
         },
       };
     }
