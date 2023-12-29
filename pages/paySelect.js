@@ -31,16 +31,16 @@ function PaySelect() {
   }, [paymentMethod, router]);
   return (
     <Layout>
-      <div className="mt-20 px-3 jloPay">
+      <div className="px-3 mt-20 jloPay">
         <form className="max-w-md m-auto" onSubmit={submitHandler}>
           <h1 className="mb-4 text-xl">Payment Method</h1>
-          {['paypal', 'Stripe', 'Chapa', 'SantimPay', 'telebirr'].map(
+          {['paypal', 'Stripe', 'Chapa', 'SantimPay', 'teleBirr'].map(
             (payment) => (
               <div className="mb-4" key={payment}>
                 <input
                   id={payment}
                   name="paymentMethod"
-                  className="p-2 outline-none  focus:ring-0"
+                  className="p-2 outline-none focus:ring-0"
                   type="radio"
                   checked={selectedPayment === payment}
                   onChange={() => setSelectedPayment(payment)}

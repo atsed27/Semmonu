@@ -19,11 +19,11 @@ function CreateEvent() {
   const { ticket } = state;
   const { createEvent } = ticket;
   useEffect(() => {
-    setValue('title', createEvent.title);
-    setValue('address', createEvent.address);
-    setValue('description', createEvent.description);
-    setValue('price', createEvent.price);
-    setValue('total', createEvent.total);
+    setValue('title', createEvent?.title);
+    setValue('address', createEvent?.address);
+    setValue('description', createEvent?.description);
+    setValue('price', createEvent?.price);
+    setValue('total', createEvent?.total);
   }, [setValue, createEvent]);
   const submitHandler = ({ title, address, description, price, total }) => {
     console.log(title, address, description, price, total);
