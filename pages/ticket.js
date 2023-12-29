@@ -45,10 +45,10 @@ function Ticket() {
                           <h2 className="text-lg font-semibold ">
                             {item.name} Event{' '}
                           </h2>
-                          <h2 className="text-lg font-semibold ">
+                          <h2 className="text-md font-medium ">
                             {item.category}
                           </h2>
-                          <h2 className="text-lg font-bold ">
+                          <h2 className="text-base  ">
                             {item.rating} out of 10
                           </h2>
                           <h2 className="text-lg font-bold ">

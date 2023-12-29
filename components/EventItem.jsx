@@ -12,12 +12,12 @@ function EventItem({ event }) {
           alt={event.name}
         />
       </Link>
-      <div className="flex flex-col items-center justify-center p-5">
+      <div className="px-2 p-5 ">
         <Link href={`event/${event._id}`}>
-          <h2 className="text-lg">{event.name}</h2>
+          <h2 className="text-lg font-medium">{event.name}</h2>
         </Link>
-        <p className="mb-2">{event.category}</p>
-        <p className="">${event.price}</p>
+        <p className="mb-2 font-light ">Friday . 10:30 PM GMT+ 5:30</p>
+        <p className="text-lg font-medium mb-2"> From ${event.price}</p>
         <button className="primary-button" type="button">
           Add ticket
         </button>
