@@ -13,7 +13,7 @@ const signup = async (req, res) => {
       const newUser = new User({ ...req.body, password: hash });
       await newUser.save();
       await db.disconnect();
-      res.status(200).json('ok');
+      res.status(200).json('new user is created successfully');
     } catch (error) {
       console.log(error);
     }
