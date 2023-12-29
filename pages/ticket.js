@@ -51,12 +51,10 @@ function Ticket() {
                           <h2 className="text-base  ">
                             {item.rating} out of 10
                           </h2>
-                          <h2 className="text-lg font-bold ">
-                            {item.numReviews} view
-                          </h2>
+                          <h2 className="text-base ">{item.numReviews} view</h2>
                         </div>
                       </div>
-                      <div className="my-5 text-xl flex flex-col items-center ">
+                      <div className="my-5 text-lg flex flex-col items-center ">
                         <div>
                           <button
                             onClick={() => {
@@ -83,13 +81,13 @@ function Ticket() {
                                 payload: { ...item, quantity: quantity },
                               });
                             }}
-                            className="text-3xl"
+                            className="text-xl"
                           >
                             +
                           </button>
-                          <h2 className="text-2xl px-2"> {item.quantity} </h2>
+                          <h2 className="text-xl px-2"> {item.quantity} </h2>
                           <button
-                            className="text-4xl"
+                            className="text-2xl"
                             onClick={() => {
                               const quantity = item.quantity - 1;
                               if (quantity === 0) {
