@@ -6,13 +6,13 @@ import { useContext } from 'react';
 import { Store } from '@/utils/store';
 import db from '@/utils/db';
 import Events from '@/model/Events';
+import Recommend from '@/components/Recommend';
 
 function EventScreen(props) {
   const { state, dispatch } = useContext(Store);
-  const { event } = props;
+  const { event, events } = props;
+  console.log(events);
   const router = useRouter();
-
-  console.log(event);
   if (!event) {
     return <div>Event is not found</div>;
   }
@@ -34,7 +34,7 @@ function EventScreen(props) {
   };
   return (
     <Layout>
-      <div className=" container   m-auto mt-4">
+      <div className=" container  min-h-screen  m-auto mt-4">
         <div className="py-2">
           <Link href={'/event'}>back to event</Link>
         </div>
@@ -77,6 +77,10 @@ function EventScreen(props) {
             </button>
           </div>
         </div>
+        <div className="py-2 md:py-4 lg:py-6">
+          <hr className="text-green-300" color="green" />
+          <Recommend events={events} />
+        </div>
       </div>
     </Layout>
   );
@@ -84,17 +88,18 @@ function EventScreen(props) {
 
 export default EventScreen;
 
+//server side rendering
 export async function getServerSideProps(context) {
   const { params } = context;
   const { id } = params;
-
   await db.connect();
   const event = await Events.findOne({ _id: id }).lean();
-
+  const events = await Events.find().lean();
   await db.disconnect();
   return {
     props: {
       event: event ? db.convertDocToObj(event) : null,
+      events: events.map(db.convertDocToObj),
     },
   };
 }
