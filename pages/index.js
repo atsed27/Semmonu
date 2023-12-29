@@ -24,13 +24,13 @@ function Home() {
             <div className="flex items-center justify-between jioLink">
               <Link
                 className="px-3 py-2 border rounded-full bg-orange jioLinkT"
-                href="/"
+                href="/createEvent"
               >
                 Create Event
               </Link>
               <Link
                 className="px-3 py-2 bg-white border rounded-full jioLinkT "
-                href="/"
+                href="/event"
               >
                 browse Event
               </Link>

@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 
-function EventItem({ event }) {
+function EventItem({ event, addTicket }) {
   return (
     <div className="card">
       <Link href={`event/${event._id}`}>
@@ -18,7 +18,11 @@ function EventItem({ event }) {
         </Link>
         <p className="mb-2 font-light ">Friday . 10:30 PM GMT+ 5:30</p>
         <p className="text-lg font-medium mb-2"> From ${event.price}</p>
-        <button className="primary-button" type="button">
+        <button
+          className="primary-button"
+          type="button"
+          onClick={() => addTicket(event)}
+        >
           Add ticket
         </button>
       </div>
