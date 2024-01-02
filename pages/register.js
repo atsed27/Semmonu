@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '@/components/Layout';
-import React, { useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import Google from '../public/Image/google.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +10,19 @@ import { useSession } from 'next-auth/react';
 import { getError } from '@/utils/error';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'REGISTER_REQUEST':
+      return { ...state, loading: true, error: '' };
+    case 'REGISTER_SUCCESS':
+      return { ...state, loading: false, error: '' };
+    case 'REGISTER_FILER':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      state;
+  }
+}
 
 function SignUp() {
   const { data: session } = useSession();
@@ -26,20 +39,31 @@ function SignUp() {
     register,
     formState: { errors },
   } = useForm();
-
+  const [{ loading, error }, dispatch1] = useReducer(reducer, {
+    loading: false,
+    error: '',
+  });
+  console.log(loading, error);
   const submitHandler = async ({ name, email, password }) => {
     try {
+      dispatch1({ type: 'REGISTER_REQUEST' });
       const res = await axios.post('api/auth/signup', {
         name,
         email,
         password,
       });
+      dispatch1({ type: 'REGISTER_SUCCESS' });
       console.log(res);
       toast.success('Register is successful');
       router.push('/login');
     } catch (error) {
-      toast.error(getError(error));
+      dispatch1({ type: 'REGISTER_FILER', payload: getError(error) });
+      if (error.response.status === 404) {
+        console.log(error.response.status);
+        toast.error(error.response.data);
+      }
       console.log(error);
+      toast.error(getError(error));
     }
   };
   return (
@@ -48,7 +72,7 @@ function SignUp() {
         <div className="flex items-center justify-center">
           <form
             onSubmit={handleSubmit(submitHandler)}
-            className="px-5 py-5 mx-2 mt-16 mb-5 rounded-lg shadow-xl  sm:mt-24 lg:mt-36 shadow-gray-200"
+            className="px-5 py-5 mx-2 mt-16 mb-5 rounded-lg shadow-xl sm:mt-24 lg:mt-36 shadow-gray-200"
           >
             <h1 className="py-3 text-2xl font-bold text-center">
               Create Account
@@ -108,7 +132,7 @@ function SignUp() {
             <div className="mb-5 bg-primary">
               <h3 className="text-center">
                 <button className="px-10 py-1 text-xl font-semibold">
-                  Sign Up
+                  {loading === true ? <>loading...</> : <>Sign Up</>}
                 </button>
               </h3>
             </div>

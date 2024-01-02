@@ -7,7 +7,7 @@ const signup = async (req, res) => {
     try {
       await db.connect();
       const findUser = await User.findOne({ email: req.body.email });
-      if (findUser) return res.status(404).json('email is already taken');
+      if (findUser) return res.status(404).json('email is already found');
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(req.body.password, salt);
       const newUser = new User({ ...req.body, password: hash });

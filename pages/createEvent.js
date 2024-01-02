@@ -29,7 +29,6 @@ function CreateEvent() {
     error: '',
     users: {},
   });
-
   console.log(loading, users, error);
   const {
     handleSubmit,
