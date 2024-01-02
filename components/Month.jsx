@@ -18,15 +18,15 @@ function Month() {
         panelMethod: value,
       })
     );
-    router.push('/paySelect');
+    router.push('/paySelect?message=panel');
   };
   return (
     <div className="grid md:grid-cols-3 gap-5 mt-10 ">
       <div
         className={
           panelMethod === 'basic'
-            ? 'border shadow-lg rounded-xl bg-slate-300'
-            : 'border shadow-lg rounded-xl '
+            ? 'border-2 shadow-lg rounded-xl bg-slate-300'
+            : 'border-2 shadow-lg rounded-xl hover:bg-slate-100'
         }
       >
         <div className=" px-2 pt-3 flex flex-col items-center justify-center">
@@ -55,8 +55,8 @@ function Month() {
       <div
         className={
           panelMethod === 'pro'
-            ? 'border shadow-lg rounded-xl bg-slate-300'
-            : 'border shadow-lg rounded-xl '
+            ? 'border-2 shadow-lg rounded-xl  bg-slate-300'
+            : 'border-2 shadow-lg rounded-xl hover:bg-slate-100 '
         }
       >
         <div className=" px-2 pt-3 flex flex-col items-center justify-center">
@@ -83,11 +83,10 @@ function Month() {
         </div>
       </div>
       <div
-        panelMethod
         className={
           panelMethod === 'proMax'
-            ? 'border shadow-lg rounded-xl bg-slate-300'
-            : 'border shadow-lg rounded-xl '
+            ? 'border-2 shadow-lg rounded-xl bg-slate-300'
+            : 'border-2 shadow-lg rounded-xl hover:bg-slate-100'
         }
       >
         <div className=" px-2 pt-3 flex flex-col items-center justify-center">

@@ -18,8 +18,8 @@ function ChoosePrice() {
               onClick={() => setCardSelect('one')}
               className={
                 cardSelect === 'one'
-                  ? ' bg-primary rounded-full mx-3 px-3 py-2 '
-                  : 'text-blue-500 mx-3'
+                  ? ' bg-primary rounded-full sm:mx-3 px-3 py-2 '
+                  : 'text-blue-500 sm:mx-3'
               }
             >
               One Time

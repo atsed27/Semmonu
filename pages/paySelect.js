@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 function PaySelect() {
   const [selectedPayment, setSelectedPayment] = useState('');
   const router = useRouter();
+  const { message } = router.query;
+  console.log(message);
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { paymentMethod } = ticket;
@@ -53,7 +55,9 @@ function PaySelect() {
           )}
           <div className="flex justify-between my-4">
             <button
-              onClick={() => router.push('/ticket')}
+              onClick={() =>
+                router.push(message === 'panel' ? '/choosePrice' : '/ticket')
+              }
               className="default-button"
               type="button"
             >
