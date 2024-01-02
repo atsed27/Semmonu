@@ -1,38 +1,27 @@
 import mongoose from 'mongoose';
 const EventSchema = new mongoose.Schema(
   {
-    name: {
+    userId: { required: true, type: String },
+    title: {
       type: String,
       required: true,
     },
-    slug: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+
     category: {
       type: String,
       required: true,
     },
-    image: { type: String, required: true },
+    address: {
+      type: String,
+      required: true,
+    },
+    image: { type: String, default: 'test' },
     price: {
       type: Number,
       required: true,
     },
-    brand: {
-      type: String,
-      required: true,
-    },
-    rating: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
-    numReviews: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
+    totalTicket: { type: Number, required: true, default: 0 },
+
     countInStock: {
       type: Number,
       required: true,
@@ -42,6 +31,7 @@ const EventSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    cover: {},
   },
   {
     timestamps: true,

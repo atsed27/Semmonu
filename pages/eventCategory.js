@@ -17,11 +17,11 @@ function EventCategory() {
   const { ticket } = state;
   const { createEvent } = ticket;
   useEffect(() => {
-    if (!createEvent.address) {
+    if (!createEvent?.address) {
       router.push('/createEvent');
     }
-    setValue('category', createEvent.category);
-    setValue('tag', createEvent.tag);
+    setValue('category', createEvent?.category);
+    setValue('tag', createEvent?.tag);
   }, [setValue, createEvent, router]);
   const submitHandler = ({ category, tag }) => {
     dispatch({

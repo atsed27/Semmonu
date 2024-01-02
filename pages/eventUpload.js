@@ -4,6 +4,7 @@ import { Store } from '@/utils/store';
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 function EventUpload() {
   const {
@@ -16,18 +17,24 @@ function EventUpload() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { createEvent } = ticket;
-  const submitHandler = ({ cover }) => {
+  const submitHandler = async ({ cover }) => {
     console.log(cover);
     dispatch({
       type: 'Save_Create_Event',
       payload: { cover },
     });
+    let event = state?.ticket?.createEvent;
+    const res = await axios.post('/api/event/new', {
+      event,
+    });
+    console.log(res);
+    //router.push('/createEvent')
   };
   useEffect(() => {
-    if (!createEvent.address) {
+    if (!createEvent?.address) {
       router.push('/createEvent');
     }
-    setValue('cover', createEvent.cover);
+    setValue('cover', createEvent?.cover);
   }, [setValue, createEvent, router]);
   return (
     <Layout title="upload">
@@ -39,7 +46,7 @@ function EventUpload() {
         >
           <h1 className="mb-4 text-xl">Upload</h1>
           <div className="mb-4">
-            <label className="my-2" htmlFor="fullName">
+            <label className="my-2" htmlFor="file">
               cover picture
             </label>
             <input
