@@ -5,15 +5,15 @@ import OneTime from '@/components/OneTime';
 import React, { useState } from 'react';
 
 function ChoosePrice() {
-  const [cardSelect, setCardSelect] = useState('one');
+  const [cardSelect, setCardSelect] = useState('month');
   return (
     <Layout title={'choose-price'}>
       <div className="container m-auto mt-4 px-4  mb-9 ">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-xl font-semibold max-w-xl">
+          <h1 className="text-2xl sm:text-3xl  my-3 font-semibold max-w-xl">
             Choose Pricing that Right For You
           </h1>
-          <div className="flex items-center border rounded-full px-2 bg-slate-200 mt-3 py-1">
+          <div className="flex items-center border rounded-full px-2 bg-slate-200 mt-3 py-3">
             <button
               onClick={() => setCardSelect('one')}
               className={

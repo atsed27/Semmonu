@@ -65,6 +65,15 @@ function reducer(state, action) {
         },
       };
     }
+    case 'ADD_PANEL_METHOD': {
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          panelMethod: action.payload,
+        },
+      };
+    }
     default: {
       return state;
     }
