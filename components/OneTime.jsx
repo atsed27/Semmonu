@@ -3,7 +3,7 @@ import React from 'react';
 function OneTime() {
   return (
     <div className="flex items-center justify-center mt-10">
-      <div className="border shadow-lg rounded-xl w-1/3 ">
+      <div className="border shadow-lg rounded-xl sm:w-1/3 ">
         <div className=" px-2 pt-3 flex flex-col items-center justify-center">
           <h3 className="text-xl font-bold py-2 ">One Time</h3>
           <h1 className=" py-2 text-4xl font-bold">$12</h1>

@@ -1,13 +1,17 @@
 import Layout from '@/components/Layout';
 import { useSession } from 'next-auth/react';
-import Link from 'next/link';
 import EventWizard from '@/components/EventWizard';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Store } from '@/utils/store';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { getError } from '@/utils/error';
 function CreateEvent() {
   const { data: session } = useSession();
+  const [user, setUser] = useState({});
+  console.log(user.userType);
   const router = useRouter();
   const {
     handleSubmit,
@@ -19,12 +23,24 @@ function CreateEvent() {
   const { ticket } = state;
   const { createEvent } = ticket;
   useEffect(() => {
+    if (session?.user?.email) {
+      const findUser = async () => {
+        try {
+          const res = await axios.get('/api/user');
+          setUser(res.data);
+        } catch (error) {
+          console.log(error);
+          toast.error(getError(error));
+        }
+      };
+      findUser();
+    }
     setValue('title', createEvent?.title);
     setValue('address', createEvent?.address);
     setValue('description', createEvent?.description);
     setValue('price', createEvent?.price);
     setValue('total', createEvent?.total);
-  }, [setValue, createEvent]);
+  }, [setValue, createEvent, session?.user?.email]);
   const submitHandler = ({ title, address, description, price, total }) => {
     console.log(title, address, description, price, total);
     dispatch({
@@ -34,19 +50,8 @@ function CreateEvent() {
 
     router.push('/eventCategory');
   };
-  if (!session?.user.isAdmin) {
-    return (
-      <Layout>
-        <div className="p-5 ">
-          <Link className="" href="/">
-            back
-          </Link>
-          <div className="text-xl font-semibold text-red-500">
-            Create event only admin
-          </div>
-        </div>
-      </Layout>
-    );
+  if (user?.userType === 'All') {
+    router.push('/choosePrice');
   }
   return (
     <Layout title="create">

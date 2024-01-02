@@ -43,7 +43,7 @@ function SignUp() {
     }
   };
   return (
-    <Layout title={'login'}>
+    <Layout title={'register'}>
       <div className="container m-auto mt-4 px-4">
         <div className="flex items-center justify-center">
           <form

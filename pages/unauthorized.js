@@ -7,8 +7,10 @@ function Unauthorized() {
   const { message } = router.query;
   return (
     <Layout title={'unauthorized'}>
-      <h1 className="text-xl ">Access Denied</h1>
-      {message && <div className="text-red-500">{message}</div>}
+      <div className="flex flex-col items-center justify-center h-screen">
+        <h1 className="text-xl ">Access Denied</h1>
+        {message && <div className="text-red-500">{message}</div>}
+      </div>
     </Layout>
   );
 }

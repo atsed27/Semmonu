@@ -20,6 +20,11 @@ const UserSchema = new mongoose.Schema(
     },
     image: {
       type: String,
+      default: 'test.jpg',
+    },
+    userType: {
+      type: String,
+      default: 'All',
     },
   },
   {
