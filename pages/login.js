@@ -11,8 +11,9 @@ import { getError } from '@/utils/error';
 import { useRouter } from 'next/router';
 
 function Login() {
-  const { data: session } = useSession();
+  const { status, data: session } = useSession();
   const router = useRouter();
+  console.log(status);
   const { redirect } = router.query;
   useEffect(() => {
     if (session?.user) {
@@ -42,13 +43,13 @@ function Login() {
   };
   return (
     <Layout title={'login'}>
-      <div className="container m-auto mt-4 px-4">
+      <div className="container px-4 m-auto mt-4">
         <div className="flex items-center justify-center">
           <form
             onSubmit={handleSubmit(submitHandler)}
-            className=" mx-2 mt-16 mb-5 sm:mt-24 lg:mt-36 px-5 py-5  shadow-xl shadow-gray-200 rounded-lg"
+            className="px-5 py-5 mx-2 mt-16 mb-5 rounded-lg shadow-xl sm:mt-24 lg:mt-36 shadow-gray-200"
           >
-            <h1 className="text-2xl py-3 text-center font-bold">
+            <h1 className="py-3 text-2xl font-bold text-center">
               welcome back
             </h1>
             <div className="mb-4">
@@ -90,20 +91,20 @@ function Login() {
             </div>
             <div className="mb-4">
               <h3 className="text-right">
-                <button className="text-md font-semibold">
+                <button className="font-semibold text-md">
                   Forgot Password
                 </button>
               </h3>
             </div>
             <div className="mb-5 bg-primary">
               <h3 className="text-center">
-                <button className="text-xl   py-1 px-10 font-semibold">
+                <button className="px-10 py-1 text-xl font-semibold">
                   Log In
                 </button>
               </h3>
             </div>
             <div className="flex items-center justify-between mb-4">
-              <div className=" w-1/3">
+              <div className="w-1/3 ">
                 <hr className="text-xl text-green-400" />
               </div>
               <div className="">
@@ -113,8 +114,8 @@ function Login() {
                 <hr className="text-3xl " />
               </div>
             </div>
-            <div className="mb-4 flex items-center justify-center">
-              <button className="border rounded-md mr-3 pl-3 pr-2 py-2">
+            <div className="flex items-center justify-center mb-4">
+              <button className="py-2 pl-3 pr-2 mr-3 border rounded-md">
                 <Image
                   className=""
                   src={Google}
@@ -123,7 +124,7 @@ function Login() {
                   height={25}
                 />
               </button>
-              <button className="border rounded-md mr-3 pl-3 pr-2 py-2">
+              <button className="py-2 pl-3 pr-2 mr-3 border rounded-md">
                 <Image
                   className=""
                   src={Google}
@@ -133,7 +134,7 @@ function Login() {
                 />
               </button>
             </div>
-            <div className="mb-4 text-lg sm:text-xl flex items-center justify-center">
+            <div className="flex items-center justify-center mb-4 text-lg sm:text-xl">
               don&apos;t an account?&nbsp;
               <Link href="/register" className="text-green-500">
                 sign Up

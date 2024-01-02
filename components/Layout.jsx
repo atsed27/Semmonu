@@ -38,7 +38,7 @@ function Layout({ children, title }) {
               <span className="text-white ">nun</span>
             </Link>
             <div>
-              <Link href={'/ticket'} className=" ">
+              <Link href={'/ticket'} className="">
                 Ticket
               </Link>
               {ticketCount > 0 && (
@@ -91,7 +91,7 @@ function Layout({ children, title }) {
             </div>
           </nav>
         </header>
-        <main className="m-auto  mx-0 mt-0">{children}</main>
+        <main className="m-auto mx-0 mt-0">{children}</main>
         <footer className="flex items-center justify-center bg-primary">
           footer
         </footer>

@@ -5,6 +5,7 @@ import sell from '../public/Image/sell.png';
 import pay from '../public/Image/Pay/Pay_W.png';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
+import Loader from '@/components/loader/Loader';
 
 function Home() {
   const { status } = useSession();
@@ -12,8 +13,8 @@ function Home() {
   return (
     <Layout title="Home">
       {status === 'loading' ? (
-        <div className="flex items-center justify-center h-screen">
-          loading...
+        <div>
+          <Loader />
         </div>
       ) : (
         <div className="m-auto mx-0 mt-0">

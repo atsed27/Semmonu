@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import '@/styles/HomeS.css';
+import '@/styles/Loader.css';
 import { StoreProvider } from '@/utils/store';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -31,7 +32,7 @@ function Auth({ children }) {
     },
   });
   if (status === 'loading') {
-    return <di>loading...</di>;
+    return <div>loading...</div>;
   }
   return children;
 }
