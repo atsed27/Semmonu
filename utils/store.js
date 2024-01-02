@@ -53,6 +53,9 @@ function reducer(state, action) {
         },
       };
     }
+    case 'Event_Create_Clear': {
+      return { ...state, ticket: { ...state.ticket, createEvent: {} } };
+    }
     case 'SAVE_PAYMENT_METHOD': {
       return {
         ...state,

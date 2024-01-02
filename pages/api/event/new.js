@@ -15,10 +15,10 @@ const handler = async (req, res) => {
       const findUser = await User.findOne({ email: user.email });
       if (!findUser) return res.status(404).json('user is not found');
       const createEvent = new Events({
-        ...req.body.event,
+        ...req.body.createEvent,
         userId: findUser._id,
-        countInStock: req.body.event.total,
-        totalTicket: req.body.event.total,
+        countInStock: req.body.createEvent.total,
+        totalTicket: req.body.createEvent.total,
       });
       await createEvent.save();
       await db.disconnect();

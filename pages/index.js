@@ -4,8 +4,13 @@ import Image from 'next/image';
 import sell from '../public/Image/sell.png';
 import pay from '../public/Image/Pay/Pay_W.png';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { Store } from '@/utils/store';
 
 function Home() {
+  const { state } = useContext(Store);
+  console.log(state);
+ 
   return (
     <Layout title="Home">
       <div className="m-auto mx-0 mt-0">

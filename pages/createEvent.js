@@ -75,7 +75,6 @@ function CreateEvent() {
             <label htmlFor="address">Location</label>
             <input
               id="address "
-              autoFocus
               className="w-full"
               {...register('address', {
                 required: 'Please Enter Event address',
@@ -90,7 +89,6 @@ function CreateEvent() {
             <label htmlFor="desc">Description</label>
             <textarea
               id="description "
-              autoFocus
               className="w-full"
               {...register('description', {
                 required: 'Please Enter your Description of event',
@@ -109,7 +107,6 @@ function CreateEvent() {
             <input
               id="price"
               type="number"
-              autoFocus
               className="w-full"
               placeholder="Enter 0 for Free Ticket"
               {...register('price', {
@@ -125,7 +122,6 @@ function CreateEvent() {
             <input
               id="total"
               type="number"
-              autoFocus
               className="w-full"
               {...register('total', {
                 required: 'Please Enter total ticket available',

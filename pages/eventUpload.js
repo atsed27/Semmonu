@@ -5,6 +5,9 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { getError } from '@/utils/error';
+import Cookies from 'js-cookie';
 
 function EventUpload() {
   const {
@@ -18,17 +21,28 @@ function EventUpload() {
   const { ticket } = state;
   const { createEvent } = ticket;
   const submitHandler = async ({ cover }) => {
-    console.log(cover);
-    dispatch({
-      type: 'Save_Create_Event',
-      payload: { cover },
-    });
-    let event = state?.ticket?.createEvent;
-    const res = await axios.post('/api/event/new', {
-      event,
-    });
-    console.log(res);
-    //router.push('/createEvent')
+    try {
+      console.log(cover);
+      dispatch({
+        type: 'Save_Create_Event',
+        payload: { cover },
+      });
+
+      await axios.post('/api/event/new', {
+        createEvent,
+      });
+      toast.success('Create Event Successfully');
+      router.push('/');
+      Cookies.set(
+        'ticket',
+        JSON.stringify({
+          ...ticket,
+          createEvent: {},
+        })
+      );
+    } catch (error) {
+      toast.error(getError('Create Event is Failed'));
+    }
   };
   useEffect(() => {
     if (!createEvent?.address) {
