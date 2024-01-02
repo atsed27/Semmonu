@@ -23,7 +23,9 @@ function Ticket() {
         ) : (
           <div>
             <div className=" mx-5 my-5 hidden sm:flex items-center justify-between">
-              <h1 className="border-2 p-2 rounded-md">continue Events</h1>
+              <Link href={'/event'}>
+                <h1 className="border-2 p-2 rounded-md">continue Events</h1>
+              </Link>
               <h1 className="text-xl text-white bg-primary p-2 rounded-md">
                 Buy Now
               </h1>

@@ -34,7 +34,8 @@ function Layout({ children, title }) {
           <nav className="flex items-center justify-between px-4 bg-primary h-14 sm:h-12">
             <Link href={'/'} className="text-lg sm:text-2xl">
               {' '}
-              Semo<span className="text-white ">nun</span>
+              <span className="sm:text-3xl">S</span>emo
+              <span className="text-white ">nun</span>
             </Link>
             <div>
               <Link href={'/ticket'} className=" ">
