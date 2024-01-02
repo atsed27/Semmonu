@@ -1,8 +1,11 @@
+import Annual from '@/components/Annual';
 import Layout from '@/components/Layout';
 import Month from '@/components/Month';
-import React from 'react';
+import OneTime from '@/components/OneTime';
+import React, { useState } from 'react';
 
 function ChoosePrice() {
+  const [cardSelect, setCardSelect] = useState('one');
   return (
     <Layout title={'choose-price'}>
       <div className="container m-auto mt-4 px-4  mb-9 ">
@@ -11,14 +14,41 @@ function ChoosePrice() {
             Choose Pricing that Right For You
           </h1>
           <div className="flex items-center border rounded-full px-2 bg-slate-200 mt-3 py-1">
-            <button className="text-blue-500 mr-2">One Time</button>
-            <button className="mr-2 bg-primary rounded-full  px-2 py-2 pr-5">
+            <button
+              onClick={() => setCardSelect('one')}
+              className={
+                cardSelect === 'one'
+                  ? ' bg-primary rounded-full mx-3 px-3 py-2 '
+                  : 'text-blue-500 mx-3'
+              }
+            >
+              One Time
+            </button>
+            <button
+              onClick={() => setCardSelect('month')}
+              className={
+                cardSelect === 'month'
+                  ? ' bg-primary rounded-full mx-3 px-3 py-2 '
+                  : 'text-blue-500 mx-3'
+              }
+            >
               Monthly
             </button>
-            <button className="text-blue-500">Annual</button>
+            <button
+              onClick={() => setCardSelect('year')}
+              className={
+                cardSelect === 'year'
+                  ? ' bg-primary rounded-full mx-3 px-3 py-2  '
+                  : 'text-blue-500 mx-3'
+              }
+            >
+              Annual
+            </button>
           </div>
         </div>
-        <Month />
+        {cardSelect === 'month' && <Month />}
+        {cardSelect === 'year' && <Annual />}
+        {cardSelect === 'one' && <OneTime />}
       </div>
     </Layout>
   );
