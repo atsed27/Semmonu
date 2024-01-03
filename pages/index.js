@@ -51,7 +51,7 @@ function Home() {
           </div>
           <div className="flex flex-col items-center justify-center">
             <h1 className="text-xl ">Fast online payment</h1>
-            <div>Imag</div>
+            <div>imag</div>
           </div>
           <div className="flex items-center justify-center h-96 bg-primary">
             <div className="mb-5">
