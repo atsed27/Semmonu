@@ -100,9 +100,9 @@ function Login() {
               </div>
               <div className="mb-4">
                 <h3 className="text-right">
-                  <button className="font-semibold text-md">
+                  <Link href={'/forget'} className="font-semibold text-md">
                     Forgot Password
-                  </button>
+                  </Link>
                 </h3>
               </div>
               <div className="mb-5 bg-primary">
