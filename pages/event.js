@@ -12,6 +12,7 @@ export default function EventScreen({ events }) {
   const { ticket } = state;
   console.log(ticket);
   const addTicket = async (event) => {
+    console.log(event);
     const existItem = ticket.ticketItems.find((item) => item._id === event._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`api/event/${event._id}`);
@@ -20,6 +21,7 @@ export default function EventScreen({ events }) {
       return;
     }
     dispatch({ type: 'Ticket_ADD_ITEM', payload: { ...event, quantity } });
+    toast.success('Event Ticket is add successfully ');
   };
   return (
     <Layout title={'Event'}>

@@ -13,6 +13,17 @@ const initialState = {
 };
 function reducer(state, action) {
   switch (action.type) {
+    case 'Ticket_Reset': {
+      return {
+        ...state,
+        ticket: {
+          ticketItems: [],
+          createEvent: {},
+          panelMethod: '',
+          paymentMethod: '',
+        },
+      };
+    }
     case 'Ticket_ADD_ITEM': {
       const newItem = action.payload;
       const existItem = state.ticket.ticketItems.find(
@@ -20,11 +31,11 @@ function reducer(state, action) {
       );
       const ticketItems = existItem
         ? state.ticket.ticketItems.map((item) =>
-            item.name === existItem.name ? newItem : item
+            item._id === existItem._id ? newItem : item
           )
         : [...state.ticket.ticketItems, newItem];
       Cookies.set('ticket', JSON.stringify({ ...state.ticket, ticketItems }));
-      return { ...state, ticket: { ...state.cart, ticketItems } };
+      return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
     case 'Ticket_Diff_Item': {
       const Item = action.payload;

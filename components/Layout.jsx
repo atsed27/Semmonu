@@ -19,9 +19,9 @@ function Layout({ children, title }) {
   }, [ticket.ticketItems]);
 
   const logOutHandler = () => {
-    Cookies.remove('cart');
-    dispatch({ type: 'CART_REST' });
-    signOut({ callbackUrl: '/login' });
+    Cookies.remove('ticket');
+    dispatch({ type: 'Ticket_Reset' });
+    signOut({ callbackUrl: '/' });
   };
   return (
     <>
