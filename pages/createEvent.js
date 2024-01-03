@@ -8,6 +8,7 @@ import { Store } from '@/utils/store';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '@/utils/error';
+import Loader from '@/components/loader/Loader';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -76,9 +77,9 @@ function CreateEvent() {
   return (
     <div>
       {loading === true ? (
-        <div className="flex items-center justify-center h-screen">
-          loading...
-        </div>
+        <>
+          <Loader />
+        </>
       ) : (
         <Layout title="create">
           <div className="container px-4 m-auto mt-4">
