@@ -2,7 +2,7 @@ import EventWizard from '@/components/EventWizard';
 import Layout from '@/components/Layout';
 import { Store } from '@/utils/store';
 import { useRouter } from 'next/router';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -16,6 +16,7 @@ function EventUpload() {
     formState: { errors },
     setValue,
   } = useForm();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
@@ -23,14 +24,16 @@ function EventUpload() {
   const submitHandler = async ({ cover }) => {
     try {
       console.log(cover);
+
       dispatch({
         type: 'Save_Create_Event',
         payload: { cover },
       });
-
+      setLoading(true);
       await axios.post('/api/event/new', {
         createEvent,
       });
+      setLoading(false);
       toast.success('Create Event Successfully');
       router.push('/');
       Cookies.set(
@@ -41,6 +44,7 @@ function EventUpload() {
         })
       );
     } catch (error) {
+      setLoading(false);
       toast.error(getError('Create Event is Failed'));
     }
   };
@@ -84,7 +88,9 @@ function EventUpload() {
             >
               Back
             </button>
-            <button className="primary-button">Next</button>
+            <button className="primary-button">
+              {loading === true ? <div>loading ...</div> : 'Next'}
+            </button>
           </div>
         </form>
       </div>
