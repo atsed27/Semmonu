@@ -6,6 +6,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '@/utils/error';
 import { useRouter } from 'next/router';
+
 function Forget() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -15,15 +16,14 @@ function Forget() {
     formState: { errors },
   } = useForm();
   const submitHandler = async ({ email }) => {
-    console.log(email);
     try {
       setLoading(true);
       const res = await axios.post('/api/auth/finduser', {
         email,
       });
-      console.log(res);
-      router.push('/');
+      console.log(res.data);
       setLoading(false);
+      router.push(`/afterForgot/${res.data._id}`);
     } catch (error) {
       if (error.response.data === 'email is not found') {
         toast.error(error.response.data);

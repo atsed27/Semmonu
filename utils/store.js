@@ -53,6 +53,7 @@ function reducer(state, action) {
       Cookies.set('ticket', JSON.stringify({ ...state.ticket, ticketItems }));
       return { ...state, ticket: { ...state.ticket, ticketItems } };
     }
+
     case 'Save_Create_Event': {
       const createEvent = { ...state.ticket.createEvent, ...action.payload };
       Cookies.set('ticket', JSON.stringify({ ...state.ticket, createEvent }));

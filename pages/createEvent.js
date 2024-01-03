@@ -71,8 +71,10 @@ function CreateEvent() {
 
     router.push('/eventCategory');
   };
-  if (users?.userType === 'All') {
-    router.push('/choosePrice');
+  if (!users?.isAdmin) {
+    if (users?.userType === 'All') {
+      router.push('/choosePrice');
+    }
   }
   return (
     <div>

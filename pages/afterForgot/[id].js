@@ -3,10 +3,15 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { getError } from '@/utils/error';
 function AfterForgot() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  console.log(router);
+  const { query } = router;
+  const id = query.id;
+  console.log(query);
   const {
     handleSubmit,
     register,
@@ -15,6 +20,20 @@ function AfterForgot() {
   } = useForm();
   const submitHandler = async ({ password }) => {
     console.log(password);
+    try {
+      setLoading(true);
+      await axios.put('/api/auth/finduser', { id, password });
+      setLoading(false);
+      toast.success('password is update successfully');
+      router.push('/login');
+    } catch (error) {
+      setLoading(false);
+      if (error.response.status === 400) {
+        toast.error('use this password before');
+      }
+      toast.error(getError(error));
+      console.log(error);
+    }
   };
   return (
     <Layout>
