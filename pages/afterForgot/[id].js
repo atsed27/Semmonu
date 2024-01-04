@@ -11,7 +11,7 @@ function AfterForgot() {
   const router = useRouter();
   const { query } = router;
   const id = query.id;
-  console.log(query);
+
   const {
     handleSubmit,
     register,
@@ -19,7 +19,6 @@ function AfterForgot() {
     formState: { errors },
   } = useForm();
   const submitHandler = async ({ password }) => {
-    console.log(password);
     try {
       setLoading(true);
       await axios.put('/api/auth/finduser', { id, password });
