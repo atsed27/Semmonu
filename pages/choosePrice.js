@@ -1,12 +1,29 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-constant-condition */
 import Annual from '@/components/Annual';
 import Layout from '@/components/Layout';
 import Month from '@/components/Month';
 import OneTime from '@/components/OneTime';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Link from 'next/link';
+import { Store } from '@/utils/store';
 
 function ChoosePrice() {
-  const [cardSelect, setCardSelect] = useState('month');
+  const { state } = useContext(Store);
+  const { ticket } = state;
+  const { panelMethod } = ticket;
+
+  var firstState;
+
+  if (panelMethod === 'basicM' || 'proM' || 'proMaxM') {
+    firstState = 'month';
+  }
+
+  if (panelMethod === 'oneTime') {
+    firstState = 'one';
+  }
+
+  const [cardSelect, setCardSelect] = useState(firstState);
   return (
     <Layout title={'choose-price'}>
       <div className="container px-4 m-auto mt-4 mb-9 ">

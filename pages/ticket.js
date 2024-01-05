@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from '@/components/Layout';
 import { Store } from '@/utils/store';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
@@ -10,6 +10,11 @@ function Ticket() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const router = useRouter();
+  useEffect(() => {
+    if (ticket.ticketItems.length === 0) {
+      router.push('/event');
+    }
+  }, [router, ticket.ticketItems.length]);
   return (
     <Layout>
       <div className="container m-auto mt-4 px-4">

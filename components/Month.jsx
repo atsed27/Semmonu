@@ -7,7 +7,7 @@ function Month() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { panelMethod } = ticket;
-  console.log(panelMethod);
+
   const router = useRouter();
   const handleSelectClick = (value) => {
     dispatch({ type: 'ADD_PANEL_METHOD', payload: value });

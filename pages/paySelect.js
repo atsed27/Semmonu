@@ -9,7 +9,6 @@ function PaySelect() {
   const [selectedPayment, setSelectedPayment] = useState('');
   const router = useRouter();
   const { message } = router.query;
-  console.log(message);
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { paymentMethod } = ticket;
