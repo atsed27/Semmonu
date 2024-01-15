@@ -11,7 +11,7 @@ import Recommend from '@/components/Recommend';
 function EventScreen(props) {
   const { state, dispatch } = useContext(Store);
   const { event, events } = props;
-  console.log(events);
+  console.log(event);
   const router = useRouter();
   if (!event) {
     return <div>Event is not found</div>;
