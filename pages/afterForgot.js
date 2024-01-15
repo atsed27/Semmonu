@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 function AfterForgot() {
-  const [loading, setLoading] = useState(false);
+  const [loading] = useState(false);
   const router = useRouter();
   console.log(router);
   const {

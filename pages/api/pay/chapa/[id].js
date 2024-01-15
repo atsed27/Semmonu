@@ -39,11 +39,11 @@ const chapaPay = async (req, res) => {
         .post('https://api.chapa.co/v1/transaction/initialize', data, option)
         .then(async (response) => {
           console.log(response.data);
-          await User.findByIdAndUpdate(user._id,{
-            $set:{
-              txRef:tx
-            }
-          })
+          await User.findByIdAndUpdate(user._id, {
+            $set: {
+              txRef: tx,
+            },
+          });
           res.send(response.data);
         })
         .catch((error) => {
