@@ -18,10 +18,11 @@ function Month() {
         panelMethod: value,
       })
     );
+
     router.push('/paySelect?message=panel');
   };
   return (
-    <div className="grid md:grid-cols-3 gap-5 mt-10 ">
+    <div className="grid gap-5 mt-10 md:grid-cols-3 ">
       <div
         className={
           panelMethod === 'basic'
@@ -29,13 +30,13 @@ function Month() {
             : 'border-2 shadow-lg rounded-xl hover:bg-slate-100'
         }
       >
-        <div className=" px-2 pt-3 flex flex-col items-center justify-center">
-          <h3 className="text-xl font-bold py-2 ">Basic</h3>
-          <h1 className=" py-2 text-4xl font-bold">$30</h1>
-          <h3 className="text-lg py-2">per month</h3>
+        <div className="flex flex-col items-center justify-center px-2 pt-3 ">
+          <h3 className="py-2 text-xl font-bold ">Basic</h3>
+          <h1 className="py-2 text-4xl font-bold ">$30</h1>
+          <h3 className="py-2 text-lg">per month</h3>
           <button
             onClick={() => handleSelectClick('basic')}
-            className="text-xl bg-primary px-3 py-2 rounded-lg"
+            className="px-3 py-2 text-xl rounded-lg bg-primary"
           >
             Get Started Now
           </button>
@@ -59,13 +60,13 @@ function Month() {
             : 'border-2 shadow-lg rounded-xl hover:bg-slate-100 '
         }
       >
-        <div className=" px-2 pt-3 flex flex-col items-center justify-center">
-          <h3 className="text-xl font-bold py-2 ">Pro</h3>
-          <h1 className=" py-2 text-4xl font-bold">$50</h1>
-          <h3 className="text-lg py-2">per month</h3>
+        <div className="flex flex-col items-center justify-center px-2 pt-3 ">
+          <h3 className="py-2 text-xl font-bold ">Pro</h3>
+          <h1 className="py-2 text-4xl font-bold ">$50</h1>
+          <h3 className="py-2 text-lg">per month</h3>
           <button
             onClick={() => handleSelectClick('pro')}
-            className="text-xl bg-primary px-3 py-2 rounded-lg"
+            className="px-3 py-2 text-xl rounded-lg bg-primary"
           >
             Get Started Now
           </button>
@@ -89,13 +90,13 @@ function Month() {
             : 'border-2 shadow-lg rounded-xl hover:bg-slate-100'
         }
       >
-        <div className=" px-2 pt-3 flex flex-col items-center justify-center">
-          <h3 className="text-xl font-bold py-2 ">Pro Max</h3>
-          <h1 className=" py-2 text-4xl font-bold">$80</h1>
-          <h3 className="text-lg py-2">per month</h3>
+        <div className="flex flex-col items-center justify-center px-2 pt-3 ">
+          <h3 className="py-2 text-xl font-bold ">Pro Max</h3>
+          <h1 className="py-2 text-4xl font-bold ">$80</h1>
+          <h3 className="py-2 text-lg">per month</h3>
           <button
             onClick={() => handleSelectClick('proMax')}
-            className="text-xl bg-primary px-3 py-2 rounded-lg"
+            className="px-3 py-2 text-xl rounded-lg bg-primary"
           >
             Get Started Now
           </button>

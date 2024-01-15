@@ -25,7 +25,11 @@ function PaySelect() {
         paymentMethod: selectedPayment,
       })
     );
-    router.push('/pay');
+    if (message === 'panel') {
+      router.push('panelFinal');
+    } else {
+      router.push('/pay');
+    }
   };
   useEffect(() => {
     setSelectedPayment(paymentMethod || '');
