@@ -1,7 +1,6 @@
 import db from '@/utils/db';
 import axios from 'axios';
-import User from '../../../../../model/User';
-
+import User from '@/model/User';
 const chapaVerification = async (req, res) => {
   if (req.method === 'GET') {
     try {
@@ -20,7 +19,7 @@ const chapaVerification = async (req, res) => {
         .then(async (response) => {
           console.log(response.data);
           console.log('hy');
-          const userFind = await User.findOne({ tx_ref: tx_ref });
+          const userFind = await User.findOne({ txRef: tx_ref });
           console.log(userFind);
           if (!userFind) return res.status(404).json('user is not found');
           const user = await User.findByIdAndUpdate(
