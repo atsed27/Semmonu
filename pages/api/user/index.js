@@ -8,10 +8,10 @@ const findUser = async (req, res) => {
       const session = await getServerSession(req, res);
       const { user } = session;
       if (!session) return res.status(401).json('sign is required');
-      db.connect();
+      await db.connect();
       const find = await User.findOne({ email: user.email });
       if (!find) return res.status(404).json('user is not found');
-      db.disconnect();
+      await db.disconnect();
       res.status(200).json(find);
       //const findUser = await User.findOne({email:req.body.email})
     } catch (error) {
