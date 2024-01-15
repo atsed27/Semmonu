@@ -32,8 +32,8 @@ const chapaPay = async (req, res) => {
         last_name: 'Nigatu',
         phone_number: '0916213371',
         tx_ref: tx,
-        callback_url: `https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60`,
-        return_url: 'https://www.google.com/',
+        callback_url: `https://semmonu.vercel.app/api/chapa/verification/${tx}`,
+        return_url: 'https://semmonu.vercel.app/',
       };
       await axios
         .post('https://api.chapa.co/v1/transaction/initialize', data, option)
