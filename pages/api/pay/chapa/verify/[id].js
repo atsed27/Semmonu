@@ -19,7 +19,9 @@ const chapaVerification = async (req, res) => {
         .get(`https://api.chapa.co/v1/transaction/verify/${tx_ref}`, option)
         .then(async (response) => {
           console.log(response.data);
+          console.log('hy');
           const userFind = await User.findOne({ tx_ref: tx_ref });
+          console.log(userFind);
           if (!userFind) return res.status(404).json('user is not found');
           const user = await User.findByIdAndUpdate(
             userFind._id,
