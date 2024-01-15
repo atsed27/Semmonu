@@ -32,7 +32,7 @@ const chapaPay = async (req, res) => {
         last_name: 'Nigatu',
         phone_number: '0916213371',
         tx_ref: tx,
-        callback_url: `https://semmonu.vercel.app/api/pay/chapa/verification/${tx}`,
+        callback_url: `https://semmonu.vercel.app/api/pay/chapa/verify/${tx}`,
         return_url: 'https://semmonu.vercel.app/',
       };
       await axios
