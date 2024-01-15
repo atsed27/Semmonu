@@ -2,11 +2,25 @@ import Layout from '@/components/Layout';
 import { Store } from '@/utils/store';
 
 import React, { useContext } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 function PanelFinal() {
   const { state } = useContext(Store);
   const { ticket } = state;
+  const router = useRouter();
   console.log(ticket.panelMethod);
+  const handleChapa = async () => {
+    try {
+      const res = await axios.post('/api/pay/chapa/:id');
+
+      const { checkout_url } = res.data.data;
+      router.push(checkout_url);
+      console.log(checkout_url);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout title={'subscribe'}>
       <div className="mt-8">
@@ -141,7 +155,10 @@ function PanelFinal() {
           </div>
         </div>
         <div className="flex flex-col items-center justify-center my-8 ">
-          <button className="w-1/2 my-2 text-xl font-medium primary-button">
+          <button
+            onClick={handleChapa}
+            className="w-1/2 my-2 text-xl font-medium primary-button"
+          >
             Pay {ticket.paymentMethod} Now
           </button>
         </div>

@@ -26,6 +26,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: 'All',
     },
+    txRef: {
+      type: String,
+    },
   },
   {
     timestamps: true,
