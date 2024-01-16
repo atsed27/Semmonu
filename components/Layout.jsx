@@ -106,7 +106,7 @@ function Layout({ children, title }) {
             <main className="m-auto mx-0 mt-0">{children}</main>
             <footer className="flex flex-col items-center justify-center bg-primary ">
               <div className="w-full ">
-                <div className="grid grid-cols-2 gap-4 mx-3 my-2 md:grid-cols-4">
+                <div className="grid grid-cols-2 gap-4 mx-3 my-2 jioFooter md:grid-cols-4">
                   <div className="">
                     <h2 className="mb-4 text-xl font-bold md:text-2xl">
                       <span className="text-xl sm:text-3xl">S</span>emo

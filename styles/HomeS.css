@@ -32,3 +32,8 @@
     margin-bottom: 10px;
   }
 }
+.jioFooter {
+  @media only screen and (max-width: 300px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
