@@ -1,8 +1,14 @@
 import Layout from '@/components/Layout';
-import React from 'react';
+import Loader from '@/components/loader/Loader';
 
 function Pay() {
-  return <Layout>Pay</Layout>;
+  return (
+    <Layout>
+      <div>
+        <Loader />
+      </div>
+    </Layout>
+  );
 }
 
 export default Pay;
