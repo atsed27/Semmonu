@@ -26,7 +26,7 @@ function ChoosePrice() {
   const [cardSelect, setCardSelect] = useState(firstState);
   return (
     <Layout title={'choose-price'}>
-      <div className="container px-4 m-auto mt-4 mb-9 ">
+      <div className="container px-4 m-auto mt-4 md:h-screen mb-9 ">
         <Link href={'/'}>back to home</Link>
         <div className="flex flex-col items-center justify-center">
           <h1 className="max-w-xl my-3 text-2xl font-semibold sm:text-3xl">

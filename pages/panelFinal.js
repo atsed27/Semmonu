@@ -23,7 +23,7 @@ function PanelFinal() {
   };
   return (
     <Layout title={'subscribe'}>
-      <div className="mt-8">
+      <div className="h-screen mt-8">
         <h2 className="mb-4 text-xl font-bold text-center">Subscribe:</h2>
         <div className="flex items-center justify-center ">
           <div

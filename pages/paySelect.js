@@ -36,7 +36,7 @@ function PaySelect() {
   }, [paymentMethod, router]);
   return (
     <Layout>
-      <div className="px-3 mt-20 jloPay">
+      <div className="h-screen px-3 mt-20 jloPay">
         <form className="max-w-md m-auto" onSubmit={submitHandler}>
           <h1 className="mb-4 text-xl">Payment Method</h1>
           {['paypal', 'Stripe', 'Chapa', 'SantimPay', 'teleBirr'].map(
