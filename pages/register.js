@@ -68,7 +68,7 @@ function SignUp() {
   };
   return (
     <Layout title={'register'}>
-      <div className="container px-4 m-auto mt-4">
+      <div className="container h-screen px-4 m-auto mt-4">
         <div className="flex items-center justify-center">
           <form
             onSubmit={handleSubmit(submitHandler)}
@@ -129,7 +129,7 @@ function SignUp() {
               )}
             </div>
 
-            <div className="mb-5 bg-primary">
+            <div className="mb-5 rounded-lg bg-primary">
               <h3 className="text-center">
                 <button className="px-10 py-1 text-xl font-semibold">
                   {loading === true ? <>loading...</> : <>Sign Up</>}
@@ -168,8 +168,13 @@ function SignUp() {
               </button>
             </div>
             <div className="flex items-center justify-center mb-4 text-lg sm:text-xl">
-              don&apos;t an account?&nbsp;
-              <Link href={`/login?redirect=${redirect || '/'}`}>Sign In</Link>
+              do have an account?&nbsp;
+              <Link
+                className="text-green-500"
+                href={`/login?redirect=${redirect || '/'}`}
+              >
+                Login
+              </Link>
             </div>
           </form>
         </div>

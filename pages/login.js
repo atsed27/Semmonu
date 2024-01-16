@@ -52,7 +52,7 @@ function Login() {
           <Loader />
         </div>
       ) : (
-        <div className="container px-4 m-auto mt-4">
+        <div className="container h-screen px-4 m-auto mt-4">
           <div className="flex items-center justify-center">
             <form
               onSubmit={handleSubmit(submitHandler)}
@@ -105,7 +105,7 @@ function Login() {
                   </Link>
                 </h3>
               </div>
-              <div className="mb-5 bg-primary">
+              <div className="mb-5 rounded-lg bg-primary">
                 <h3 className="text-center">
                   <button className="px-10 py-1 text-xl font-semibold">
                     {loading === true ? <div>Loading ... </div> : 'Log In'}
@@ -117,7 +117,7 @@ function Login() {
                   <hr className="text-xl text-green-400" />
                 </div>
                 <div className="">
-                  <h2 className="text-center">or Log In</h2>
+                  <h2 className="text-center ">or Log In</h2>
                 </div>
                 <div className="w-1/3">
                   <hr className="text-3xl " />
@@ -144,9 +144,9 @@ function Login() {
                 </button>
               </div>
               <div className="flex items-center justify-center mb-4 text-lg sm:text-xl">
-                don&apos;t an account?&nbsp;
+                don&apos;t have an account?&nbsp;
                 <Link href="/register" className="text-green-500">
-                  sign Up
+                  Register
                 </Link>
               </div>
             </form>

@@ -9,6 +9,7 @@ function PaySelect() {
   const [selectedPayment, setSelectedPayment] = useState('');
   const router = useRouter();
   const { message } = router.query;
+  console.log(message);
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { paymentMethod } = ticket;
@@ -26,9 +27,9 @@ function PaySelect() {
       })
     );
     if (message === 'panel') {
-      router.push('panelFinal');
+      router.push('/panelFinal');
     } else {
-      router.push('/pay');
+      router.push('/ticket');
     }
   };
   useEffect(() => {

@@ -9,16 +9,21 @@ import { useRouter } from 'next/router';
 function Ticket() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
+  const { paymentMethod } = ticket;
+  console.log(paymentMethod);
   const router = useRouter();
   useEffect(() => {
     if (ticket.ticketItems.length === 0) {
       router.push('/event');
     }
   }, [router, ticket.ticketItems.length]);
+  const paymentClick = async () => {
+    console.log('payment');
+  };
   return (
     <Layout>
-      <div className="container m-auto mt-4 px-4">
-        <h2 className="text-center text-2xl md:text-5xl font-semibold ">
+      <div className="container px-4 m-auto mt-4">
+        <h2 className="text-2xl font-semibold text-center md:text-5xl ">
           Your tickets
         </h2>
         {ticket.ticketItems.length === 0 ? (
@@ -27,23 +32,23 @@ function Ticket() {
           </div>
         ) : (
           <div>
-            <div className=" mx-5 my-5 hidden sm:flex items-center justify-between">
+            <div className="items-center justify-between hidden mx-5 my-5 sm:flex">
               <Link href={'/event'}>
-                <h1 className="border-2 p-2 rounded-md">continue Events</h1>
+                <h1 className="p-2 border-2 rounded-md">continue Events</h1>
               </Link>
-              <h1 className="text-xl text-white bg-primary p-2 rounded-md">
+              <h1 className="p-2 text-xl text-white rounded-md bg-primary">
                 Buy Now
               </h1>
             </div>
-            <div className="grid md:grid-cols-4 gap-5">
+            <div className="grid gap-5 md:grid-cols-4">
               <div className=" md:col-span-3">
                 {ticket.ticketItems.map((item) => (
                   <div className="my-3" key={item._id}>
-                    <div className="flex my-10 md:my-0 flex-col md:flex-row items-center justify-between">
+                    <div className="flex flex-col items-center justify-between my-10 md:my-0 md:flex-row">
                       <div className="flex items-center justify-start md:items-start jioC ">
                         <a
                           href={`/event/${item._id}`}
-                          className='className="h-1/2 w-1/2 lg:w-1/3 lg:h-1/4"'
+                          className='className="w-1/2 h-1/2 lg:w-1/3 lg:h-1/4"'
                         >
                           <img className="" src={item.image} alt="event" />
                         </a>
@@ -52,16 +57,16 @@ function Ticket() {
                           <h2 className="text-lg font-semibold ">
                             {item.name} Event{' '}
                           </h2>
-                          <h2 className="text-md font-medium ">
+                          <h2 className="font-medium text-md ">
                             {item.category}
                           </h2>
-                          <h2 className="text-base  ">
+                          <h2 className="text-base ">
                             {item.rating} out of 10
                           </h2>
                           <h2 className="text-base ">{item.numReviews} view</h2>
                         </div>
                       </div>
-                      <div className="my-5 text-lg flex flex-col items-center ">
+                      <div className="flex flex-col items-center my-5 text-lg ">
                         <div>
                           <button
                             onClick={() => {
@@ -70,7 +75,7 @@ function Ticket() {
                                 payload: item,
                               });
                             }}
-                            className="bg-red-500 rounded-full px-2"
+                            className="px-2 bg-red-500 rounded-full"
                           >
                             X
                           </button>
@@ -92,7 +97,7 @@ function Ticket() {
                           >
                             +
                           </button>
-                          <h2 className="text-xl px-2"> {item.quantity} </h2>
+                          <h2 className="px-2 text-xl"> {item.quantity} </h2>
                           <button
                             className="text-2xl"
                             onClick={() => {
@@ -120,12 +125,12 @@ function Ticket() {
                   </div>
                 ))}
               </div>
-              <div className="flex mb-5  items-center justify-center  ">
+              <div className="flex items-center justify-center mb-5 ">
                 <div>
-                  <h1 className="text-2xl py-10 font-bold text-center">
+                  <h1 className="py-10 text-2xl font-bold text-center">
                     Ticket Summary
                   </h1>
-                  <div className="flex  items-center justify-between">
+                  <div className="flex items-center justify-between">
                     <h2>Subtotal</h2>
                     <h2>
                       ${' '}
@@ -135,7 +140,7 @@ function Ticket() {
                       )}{' '}
                     </h2>
                   </div>
-                  <div className="flex py-3 items-center justify-between">
+                  <div className="flex items-center justify-between py-3">
                     <h2>bonus</h2>
                     <h2>$10</h2>
                   </div>
@@ -143,13 +148,25 @@ function Ticket() {
                     <h1 className="text-xl font-semibold">Total </h1>
                     <h1>$90</h1>
                   </div>
-                  <div className="flex py-10 items-start justify-center">
-                    <button
-                      onClick={() => router.push('login?redirect=/paySelect')}
-                      className=" px-10 py-2 text-white font-semibold bg-primary "
-                    >
-                      Buy Now
-                    </button>
+                  <div className="flex items-start justify-center py-10">
+                    <div className="px-10 py-2 font-semibold text-white rounded-md bg-primary">
+                      {paymentMethod ? (
+                        <button onClick={paymentClick}>
+                          {' '}
+                          pay with {paymentMethod}
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() =>
+                            router.push(
+                              'login?redirect=/paySelect?message=ticket '
+                            )
+                          }
+                        >
+                          Buy Now
+                        </button>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
