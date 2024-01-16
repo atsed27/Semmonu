@@ -84,7 +84,7 @@ function CreateEvent() {
         </>
       ) : (
         <Layout title="create">
-          <div className="container px-4 m-auto mt-4">
+          <div className="container h-screen px-4 m-auto mt-4 jio">
             <EventWizard activeStep={1} />
             <form
               onSubmit={handleSubmit(submitHandler)}

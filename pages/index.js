@@ -66,7 +66,7 @@ function Home() {
               </p>
               <Link
                 className="px-3 py-3 ml-5 text-xl border rounded-full bg-orange"
-                href="/choosePrice"
+                href="login?redirect=/choosePrice"
               >
                 Subscribe now!
               </Link>

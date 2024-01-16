@@ -10,6 +10,17 @@ function PanelFinal() {
   const { ticket } = state;
   const router = useRouter();
   console.log(ticket.panelMethod);
+  var payAmount = 0;
+  if (ticket.panelMethod === 'basic') {
+    payAmount = 30;
+  }
+  if (ticket.panelMethod === 'pro') {
+    payAmount = 50;
+  }
+  if (ticket.panelMethod === 'proMax') {
+    payAmount = 80;
+  }
+  console.log(payAmount);
   const handleChapa = async () => {
     try {
       const res = await axios.post('/api/pay/chapa/:id');
