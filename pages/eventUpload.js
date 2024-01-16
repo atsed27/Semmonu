@@ -10,6 +10,8 @@ import { getError } from '@/utils/error';
 import Cookies from 'js-cookie';
 
 function EventUpload() {
+  const [file, setFile] = useState(null);
+  console.log(file);
   const {
     handleSubmit,
     register,
@@ -56,7 +58,7 @@ function EventUpload() {
   }, [setValue, createEvent, router]);
   return (
     <Layout title="upload">
-      <div className="container px-4 m-auto mt-4">
+      <div className="container h-screen px-4 m-auto mt-4">
         <EventWizard activeStep={3} />
         <form
           onSubmit={handleSubmit(submitHandler)}
@@ -70,6 +72,7 @@ function EventUpload() {
             <input
               type="file"
               id="cover"
+              onChange={(e) => setFile(e.target.value)}
               className="w-full border-none"
               {...register('cover', {
                 required: 'Please Enter Event cover picture',

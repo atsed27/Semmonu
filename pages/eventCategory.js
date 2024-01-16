@@ -34,7 +34,7 @@ function EventCategory() {
 
   return (
     <Layout title="create">
-      <div className="container px-4 m-auto mt-4">
+      <div className="container h-screen px-4 m-auto mt-4">
         <EventWizard activeStep={2} />
         <form
           onSubmit={handleSubmit(submitHandler)}
