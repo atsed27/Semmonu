@@ -35,7 +35,7 @@ const chapaHandler = async (req, res) => {
         phone_number: '0916213371',
         tx_ref: tx,
         callback_url: `https://webhook.site/077164d6-29cb-40df-ba29-8a00e59a7e60`,
-        return_url: 'https://semmonu.vercel.app/',
+        return_url: 'https://semmonu.vercel.app/ticketIdGen',
       };
       await axios
         .post('https://api.chapa.co/v1/transaction/initialize', data, option)
