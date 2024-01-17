@@ -12,11 +12,13 @@ const handler = async (req, res) => {
         return res.status(403).json('user Login is required');
       }
       const { user } = session;
+      console.log(req.body.url);
       const findUser = await User.findOne({ email: user.email });
       if (!findUser) return res.status(404).json('user is not found');
       const createEvent = new Events({
         ...req.body.createEvent,
         userId: findUser._id,
+        image: req.body.url,
         countInStock: req.body.createEvent.total,
         totalTicket: req.body.createEvent.total,
       });

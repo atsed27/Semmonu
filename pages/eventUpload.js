@@ -8,6 +8,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '@/utils/error';
 import Cookies from 'js-cookie';
+import { analytics } from '@/firebase';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 function EventUpload() {
   const {
@@ -21,28 +23,39 @@ function EventUpload() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { createEvent } = ticket;
+  console.log(createEvent);
   const submitHandler = async (data) => {
     console.log(data.file[0]);
-    const file = data.file[0];
+
+    const file = data?.file[0];
     try {
-      dispatch({
-        type: 'Save_Create_Event',
-        payload: { file },
-      });
-      setLoading(true);
-      await axios.post('/api/event/ne', {
-        createEvent,
-      });
-      setLoading(false);
-      toast.success('Create Event Successfully');
-      router.push('/');
-      Cookies.set(
-        'ticket',
-        JSON.stringify({
-          ...ticket,
-          createEvent: {},
+      const fileRef = ref(analytics, `semonun/${Date.now()}`);
+      await uploadBytes(fileRef, file)
+        .then((data) => {
+          getDownloadURL(data.ref).then(async (url) => {
+            dispatch({
+              type: 'Save_Create_Event',
+              payload: { url },
+            });
+
+            setLoading(true);
+            await axios.post('/api/event/new', {
+              createEvent,
+              url,
+            });
+            setLoading(false);
+            toast.success('Create Event Successfully');
+            router.push('/');
+            Cookies.set(
+              'ticket',
+              JSON.stringify({
+                ...ticket,
+                createEvent: {},
+              })
+            );
+          });
         })
-      );
+        .catch((errors) => console.log(errors));
     } catch (error) {
       setLoading(false);
       toast.error(getError('Create Event is Failed'));

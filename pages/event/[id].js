@@ -43,7 +43,7 @@ function EventScreen(props) {
               height={640}
               width={640}
               layout="responsive"
-              src={event.image}
+              src={'/alt'}
               alt="event "
             />
           </div>
