@@ -12,11 +12,10 @@ function Slider() {
     <div className="logo">
       <div className="logo-slider ">
         <Image src={awash} alt="awash" />
-        <Image src={TeleBirr} alt="awash" />
+
         <Image src={CBE} alt="awash" />
-        <Image src={chapa} alt="chapa" />
         <Image src={Abisiniya} alt="awash" />
-        <Image src={Stripe} alt="stripe" />
+
         <Image src={Zemen} alt="Zemen" />
       </div>
     </div>
