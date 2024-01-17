@@ -4,9 +4,7 @@ import awash from '../public/Image/Pay/Awash.png';
 import CBE from '../public/Image/Pay/CBE.png';
 import Abisiniya from '../public/Image/Pay/Abisiniya.png';
 import Zemen from '../public/Image/Pay/zemen.png';
-import chapa from '../public/Image/Pay/chapa.png';
-import TeleBirr from '../public/Image/Pay/Telebirr.png';
-import Stripe from '../public/Image/Pay/stripe.png';
+
 function Slider() {
   return (
     <div className="logo">
