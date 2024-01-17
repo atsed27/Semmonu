@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import '@/styles/HomeS.css';
 import '@/styles/Loader.css';
+import '@/styles/Slider.css';
 import { StoreProvider } from '@/utils/store';
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';

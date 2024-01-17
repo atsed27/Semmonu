@@ -1,0 +1,25 @@
+@keyframes slider {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.logo {
+  overflow: hidden;
+  padding: 60px 0px;
+  background-color: white;
+  white-space: nowrap;
+}
+.logo:hover .logo-slider {
+  animation-play-state: paused;
+}
+.logo-slider {
+  display: flex;
+  animation: 35s slider infinite linear;
+}
+.logo-slider img {
+  height: 200px;
+  margin: 0 40px;
+}

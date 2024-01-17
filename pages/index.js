@@ -6,6 +6,7 @@ import pay from '../public/Image/Pay/Pay_W.png';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import Loader from '@/components/loader/Loader';
+import Slider from '@/components/Slider';
 
 function Home() {
   const { status } = useSession();
@@ -51,9 +52,13 @@ function Home() {
               <Image src={event} alt="event" />
             </div>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-xl ">Fast online payment</h1>
-            <div>imag</div>
+          <div className="flex flex-col items-center justify-center mt-2">
+            <h1 className="text-4xl font-bold text-center sm:text-left sm:text-5xl xl:text-7xl text-textPrimary">
+              Fast online payment
+            </h1>
+            <div>
+              <Slider />
+            </div>
           </div>
           <div className="flex items-center justify-center h-96 bg-primary">
             <div className="mb-5">
