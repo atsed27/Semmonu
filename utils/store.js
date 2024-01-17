@@ -65,6 +65,19 @@ function reducer(state, action) {
         },
       };
     }
+    case 'Rest_Create_Event': {
+      Cookies.set(
+        'ticket',
+        JSON.stringify({ ...state.ticket, createEvent: {} })
+      );
+      return {
+        ...state,
+        ticket: {
+          ...state.ticket,
+          createEvent: {},
+        },
+      };
+    }
     case 'Event_Create_Clear': {
       return { ...state, ticket: { ...state.ticket, createEvent: {} } };
     }
