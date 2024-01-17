@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { getError } from '@/utils/error';
-import Cookies from 'js-cookie';
 import { analytics } from '@/firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
@@ -25,10 +24,9 @@ function EventUpload() {
   const { createEvent } = ticket;
   console.log(createEvent);
   const submitHandler = async (data) => {
-    console.log(data.file[0]);
-
     const file = data?.file[0];
     try {
+      setLoading(true);
       const fileRef = ref(analytics, `semonun/${Date.now()}`);
       await uploadBytes(fileRef, file)
         .then((data) => {
@@ -38,7 +36,6 @@ function EventUpload() {
               payload: { url },
             });
 
-            setLoading(true);
             await axios.post('/api/event/new', {
               createEvent,
               url,
@@ -46,13 +43,7 @@ function EventUpload() {
             setLoading(false);
             toast.success('Create Event Successfully');
             router.push('/');
-            Cookies.set(
-              'ticket',
-              JSON.stringify({
-                ...ticket,
-                createEvent: {},
-              })
-            );
+            dispatch({ type: 'Rest_Create_Event' });
           });
         })
         .catch((errors) => console.log(errors));
@@ -83,6 +74,7 @@ function EventUpload() {
             <input
               type="file"
               name="file"
+              accept="image/*"
               {...register('file', { required: 'File is required.' })}
             />
             {errors.file && <p>{errors.file.message}</p>}
