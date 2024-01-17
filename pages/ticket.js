@@ -5,6 +5,7 @@ import React, { useContext, useEffect } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 function Ticket() {
   const { state, dispatch } = useContext(Store);
@@ -12,6 +13,11 @@ function Ticket() {
   const { paymentMethod } = ticket;
   console.log(paymentMethod);
   const router = useRouter();
+  const subTotal = ticket.ticketItems.reduce(
+    (a, c) => a + c.quantity * c.price,
+    0
+  );
+  const Total = subTotal - 10;
   useEffect(() => {
     if (ticket.ticketItems.length === 0) {
       router.push('/event');
@@ -19,6 +25,12 @@ function Ticket() {
   }, [router, ticket.ticketItems.length]);
   const paymentClick = async () => {
     console.log('payment');
+    const res = await axios.post('/api/pay/chapaT/:id', {
+      Total,
+    });
+    const { data } = res.data;
+    console.log(data?.checkout_url);
+    router.push(data?.checkout_url);
   };
   return (
     <Layout>
@@ -146,17 +158,21 @@ function Ticket() {
                   </div>
                   <div className="flex items-center justify-between">
                     <h1 className="text-xl font-semibold">Total </h1>
-                    <h1>$90</h1>
+                    <h1>${Total}</h1>
                   </div>
                   <div className="flex items-start justify-center py-10">
-                    <div className="px-10 py-2 font-semibold text-white rounded-md bg-primary">
+                    <div className="px-10 py-2 font-semibold text-white rounded-md ">
                       {paymentMethod ? (
-                        <button onClick={paymentClick}>
+                        <button
+                          className="primary-button text-black"
+                          onClick={paymentClick}
+                        >
                           {' '}
                           pay with {paymentMethod}
                         </button>
                       ) : (
                         <button
+                          className="bg-primary"
                           onClick={() =>
                             router.push(
                               'login?redirect=/paySelect?message=ticket '
