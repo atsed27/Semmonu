@@ -17,8 +17,8 @@ const chapaHandler = async (req, res) => {
       const findUser = await User.findOne({ email: user.email });
       if (!findUser) return res.status(404).json('user is not found');
       console.log(findUser);
-      const randomNumber = Math.floor(Math.random() * 10000000);
-      const randomString = 'semonun-chap' + randomNumber;
+      const date = Date.now();
+      const randomString = 'semonun-chap' + date;
       const tx = randomString;
       const option = {
         headers: {

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Ticket() {
   const { state, dispatch } = useContext(Store);
@@ -29,7 +30,16 @@ function Ticket() {
       Total,
     });
     const { data } = res.data;
-    console.log(data?.checkout_url);
+    dispatch({ type: 'Ticket_Reset' });
+    Cookies.set(
+      'ticket',
+      JSON.stringify({
+        ...ticket,
+        ticketItems: [],
+        panelMethod: '',
+        paymentMethod: '',
+      })
+    );
     router.push(data?.checkout_url);
   };
   return (
@@ -172,7 +182,7 @@ function Ticket() {
                         </button>
                       ) : (
                         <button
-                          className="bg-primary"
+                          className="bg-primary px-7 rounded-md py-2"
                           onClick={() =>
                             router.push(
                               'login?redirect=/paySelect?message=ticket '
