@@ -13,7 +13,8 @@ import Loader from './loader/Loader';
 function Layout({ children, title }) {
   const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
-
+  const name = session?.user?.name?.charAt(0);
+  console.log(name);
   const { ticket } = state;
   const [ticketCount, setTicketCount] = useState(0);
   useEffect(() => {
@@ -40,28 +41,30 @@ function Layout({ children, title }) {
         ) : (
           <div className="flex flex-col justify-between min-h-screen">
             <header className="">
-              <nav className="flex items-center justify-between px-4 bg-primary h-14 sm:h-12">
+              <nav className="flex items-center justify-between px-4 bg-primary h-14 sm:h-14">
                 <Link href={'/'} className="text-lg sm:text-2xl">
                   {' '}
                   <span className="sm:text-3xl">S</span>emo
                   <span className="text-white ">nun</span>
                 </Link>
-                <div>
-                  <Link href={'/ticket'} className="">
-                    Ticket
-                  </Link>
-                  {ticketCount > 0 && (
-                    <span className="px-2 py-1 ml-1 text-sm font-bold text-white bg-red-700 rounded-full">
-                      {ticketCount}
-                    </span>
-                  )}
+                <div className="flex items-center justify-between ">
+                  <div className="mr-2 sm:mr-3 lg:mr-5">
+                    <Link href={'/ticket'} className="">
+                      Ticket
+                    </Link>
+                    {ticketCount > 0 && (
+                      <span className="px-2 py-1 ml-1 text-sm font-bold text-white bg-red-700 rounded-full">
+                        {ticketCount}
+                      </span>
+                    )}
+                  </div>
 
                   {status === 'loading' ? (
                     'Loading'
                   ) : session?.user ? (
                     <Menu as="div" className="relative inline-block ">
-                      <Menu.Button className="px-2 py-1 bg-gray-100 border rounded-full top ">
-                        {session.user.name}
+                      <Menu.Button className="px-4 py-2 text-xl font-bold text-green-600 bg-gray-100 border rounded-full top ">
+                        {name}
                       </Menu.Button>
                       <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg">
                         <Menu.Item>
