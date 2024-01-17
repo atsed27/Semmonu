@@ -10,8 +10,6 @@ import { getError } from '@/utils/error';
 import Cookies from 'js-cookie';
 
 function EventUpload() {
-  const [file, setFile] = useState(null);
-  console.log(file);
   const {
     handleSubmit,
     register,
@@ -23,16 +21,16 @@ function EventUpload() {
   const { state, dispatch } = useContext(Store);
   const { ticket } = state;
   const { createEvent } = ticket;
-  const submitHandler = async ({ cover }) => {
+  const submitHandler = async (data) => {
+    console.log(data.file[0]);
+    const file = data.file[0];
     try {
-      console.log(cover);
-
       dispatch({
         type: 'Save_Create_Event',
-        payload: { cover },
+        payload: { file },
       });
       setLoading(true);
-      await axios.post('/api/event/new', {
+      await axios.post('/api/event/ne', {
         createEvent,
       });
       setLoading(false);
@@ -71,16 +69,10 @@ function EventUpload() {
             </label>
             <input
               type="file"
-              id="cover"
-              onChange={(e) => setFile(e.target.value)}
-              className="w-full border-none"
-              {...register('cover', {
-                required: 'Please Enter Event cover picture',
-              })}
+              name="file"
+              {...register('file', { required: 'File is required.' })}
             />
-            {errors.cover && (
-              <div className="text-red-500">{errors.cover.message}</div>
-            )}
+            {errors.file && <p>{errors.file.message}</p>}
           </div>
 
           <div className="flex flex-row justify-between mb-4">
@@ -91,7 +83,7 @@ function EventUpload() {
             >
               Back
             </button>
-            <button className="primary-button">
+            <button className="primary-button " type="submit">
               {loading === true ? <div>loading ...</div> : 'Next'}
             </button>
           </div>
