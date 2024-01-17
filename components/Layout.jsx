@@ -80,7 +80,7 @@ function Layout({ children, title }) {
                             href="/order-history"
                             className="dropdown-link"
                           >
-                            Order History
+                            Ticket History
                           </DropdownLink>
                         </Menu.Item>
 
