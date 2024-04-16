@@ -11,6 +11,7 @@ import Recommend from '@/components/Recommend';
 function EventScreen(props) {
   const { state, dispatch } = useContext(Store);
   const { event, events } = props;
+  console.log(event);
   const router = useRouter();
   if (!event) {
     return <div>Event is not found</div>;
@@ -43,7 +44,7 @@ function EventScreen(props) {
               height={640}
               width={640}
               layout="responsive"
-              src={'/alt'}
+              src={event.image}
               alt="event "
             />
           </div>
